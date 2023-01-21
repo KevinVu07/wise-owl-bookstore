@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Book Details Page</title>
+
+    <!-- Bootstrap, CSS, and Fontawesome plug in -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script src="https://kit.fontawesome.com/7ee7b60095.js" crossorigin="anonymous"></script>
+
+    <!-- Favicon plugin -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="assets/images/favicon/site.webmanifest" />
+    <link rel="mask-icon" href="assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="msapplication-config" content="assets/images/favicon/browserconfig.xml" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <section>
+      <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand logo" href="#"> <img src="assets/images/WiseOwlBookstoreCopy.png" /> </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Featured</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">New Books</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Old Books</a>
+              </li>
+            </ul>
+            <div>
+              <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> User </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><a class="dropdown-item" href="#">Cart</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </section>
+
+    <section class="container my-4 h-auto" id="top_book_section">
+      <div class="d-flex" id="book_details_box">
+        <img src="assets/images/atomicHabits.png" />
+        <div id="book_details" class="w-75">
+          <h2>Atomic Habits: the life-changing million-copy #1 bestseller</h2>
+          <p class="writer my-2">by James Clear</p>
+          <p class="categories my-2">Category: Self Help</p>
+          <div class="d-flex">
+            <div>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <p class="mx-2">(10 reviews)</p>
+          </div>
+          <p class="mb-0">
+            <span id="product_version_title"> Hardcover </span> <br />
+            <span class="label">Edition Number:</span> 1<br />
+            <span class="label"> Published: </span> 29th November 2022<br />
+            <span class="details_isbn"><span class="label">ISBN: </span>9781922806611<br /></span>
+          </p>
+        </div>
+        <div id="book_price">
+          <h4>HARDCOVER</h4>
+          <hr />
+          <p>
+            <del>RRP $36.00</del><br />
+            <strong>$25.50</strong>
+          </p>
+          <div class="buy_options">
+            <button>Add to cart</button>
+            <p class="my-4">Also available in <a href="#">old book</a> from $12.50</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer_main">
+        <div class="tag">
+          <img src="assets/images/WiseOwlBookstoreCopy.png" alt="" />
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, suscipit modi exercitationem soluta vero sunt non quod quia nisi repellendus ea dicta esse magni ducimus in, odio
+            aliquid omnis alias!
+          </p>
+        </div>
+
+        <div class="tag">
+          <h1>Quick Link</h1>
+          <a href="#">Home</a>
+          <a href="#">Featured</a>
+          <a href="#">New Books</a>
+          <a href="#">Old Books</a>
+        </div>
+
+        <div class="tag">
+          <h1>Contact Info</h1>
+          <a href="#"><i class="fa-solid fa-phone"></i>+61 3 7010 4321</a>
+          <a href="#"><i class="fa-solid fa-envelope"></i>wiseowlbookstore@gmail.com</a>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
