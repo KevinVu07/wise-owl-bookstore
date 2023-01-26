@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Register</title>
+<title>Book Details Page</title>
 
 <!-- Bootstrap, CSS, and Fontawesome plug in -->
 <link rel="stylesheet" href="assets/css/style.css" />
@@ -62,11 +60,12 @@
 					<div>
 						<div class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false">
-								Login/Register </a>
+								data-bs-toggle="dropdown" aria-expanded="false"> User </a>
 							<ul class="dropdown-menu dropdown-menu-end">
-								<li><a class="dropdown-item" href="login.html">Login</a></li>
-								<li><a class="dropdown-item" href="register.html">Register</a></li>
+								<li><a class="dropdown-item" href="#">Settings</a></li>
+								<li><a class="dropdown-item" href="#">Cart</a></li>
+								<li><hr class="dropdown-divider" /></li>
+								<li><a class="dropdown-item" href="#">Logout</a></li>
 							</ul>
 						</div>
 					</div>
@@ -75,49 +74,46 @@
 		</nav>
 	</section>
 
-	<section
-		class="container h-auto d-flex justify-content-center align-items-center">
-
-
-
-		<form action="register" method="post" class="w-75">
-			<c:if test="${not empty successMsg }">
-				<p class="mt-2 text-center text-success">${successMsg}</p>
-				<c:remove var="successMsg" scope="session" />
-			</c:if>
-
-			<c:if test="${not empty failMsg }">
-				<p class="mt-2 text-center text-danger">${failMsg}</p>
-				<c:remove var="failMsg" scope="session" />
-			</c:if>
-			<h1 class="mt-4">Register</h1>
-			<div class="mb-2">
-				<label for="firstName" class="form-label">First name</label> <input
-					type="text" class="form-control" id="firstName"
-					aria-describedby="firstName" required="required" name="firstName" />
-			</div>
-			<div class="mb-2">
-				<label for="lastName" class="form-label">Last name</label> <input
-					type="text" class="form-control" id="lastName"
-					aria-describedby="lastName" required="required" name="lastName" />
-			</div>
-			<div class="mb-2 mt-2">
-				<label for="email" class="form-label">Email address</label> <input
-					type="email" class="form-control" id="email"
-					aria-describedby="email" required="required" name="email" />
-			</div>
-			<div class="mb-2">
-				<label for="password" class="form-label">Password</label> <input
-					type="password" class="form-control" id="password"
-					required="required" name="password" />
-			</div>
-			<button type="submit" class="btn btn-primary">Register</button>
-			<div class="mt-4">
-				<p>
-					Already registered? <a href="login.jsp">Login here</a>
+	<section class="container my-4 h-auto" id="top_book_section">
+		<div class="d-flex" id="book_details_box">
+			<img src="assets/images/atomicHabits.png" />
+			<div id="book_details" class="w-75">
+				<h2>${book.name}</h2>
+				<p class="writer my-2">by ${book.authorName}</p>
+				<p class="categories my-2">Category: ${book.categoryName}</p>
+				<div class="d-flex">
+					<div>
+						<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star-half-stroke"></i>
+					</div>
+					<p class="mx-2">(10 reviews)</p>
+				</div>
+				<p class="mb-0">
+					<span id="product_version_title"> ${book.type} </span> <br /> <span
+						class="label">Edition Number:</span> ${book.editionNumber}<br /> <span class="label">
+						Published: </span> ${book.publishedDate}<br /> <span class="details_isbn"><span
+						class="label">ISBN: </span>${book.ISBN}<br /></span>
+				</p>
+				<p class="mb-0">
+					Book description: ${book.description}
 				</p>
 			</div>
-		</form>
+			<div id="book_price">
+				<h4>${book.type}</h4>
+				<hr />
+				<p>
+					<del>RRP $${book.rrp}</del>
+					<br /> <strong>$${book.salePrice}</strong>
+				</p>
+				<div class="buy_options">
+					<button>Add to cart</button>
+					<p class="my-4">
+						Also available in <a href="#">old book</a> from $12.50
+					</p>
+				</div>
+			</div>
+		</div>
 	</section>
 
 	<footer>

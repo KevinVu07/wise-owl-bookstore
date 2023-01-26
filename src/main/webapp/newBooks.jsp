@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ page isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Register</title>
+<title>Book List Page</title>
 
 <!-- Bootstrap, CSS, and Fontawesome plug in -->
 <link rel="stylesheet" href="assets/css/style.css" />
@@ -62,62 +61,50 @@
 					<div>
 						<div class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false">
-								Login/Register </a>
+								data-bs-toggle="dropdown" aria-expanded="false"> User </a>
 							<ul class="dropdown-menu dropdown-menu-end">
-								<li><a class="dropdown-item" href="login.html">Login</a></li>
-								<li><a class="dropdown-item" href="register.html">Register</a></li>
+								<li><a class="dropdown-item" href="#">Settings</a></li>
+								<li><a class="dropdown-item" href="#">Cart</a></li>
+								<li><hr class="dropdown-divider" /></li>
+								<li><a class="dropdown-item" href="#">Logout</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 		</nav>
+
+		<div>
+			<form class="d-flex" role="search">
+				<input class="form-control me-2" type="search" placeholder="Search"
+					aria-label="Search" />
+				<button class="btn btn-outline-success" type="submit">Search</button>
+			</form>
+		</div>
 	</section>
 
-	<section
-		class="container h-auto d-flex justify-content-center align-items-center">
-
-
-
-		<form action="register" method="post" class="w-75">
-			<c:if test="${not empty successMsg }">
-				<p class="mt-2 text-center text-success">${successMsg}</p>
-				<c:remove var="successMsg" scope="session" />
-			</c:if>
-
-			<c:if test="${not empty failMsg }">
-				<p class="mt-2 text-center text-danger">${failMsg}</p>
-				<c:remove var="failMsg" scope="session" />
-			</c:if>
-			<h1 class="mt-4">Register</h1>
-			<div class="mb-2">
-				<label for="firstName" class="form-label">First name</label> <input
-					type="text" class="form-control" id="firstName"
-					aria-describedby="firstName" required="required" name="firstName" />
+	<section>
+		<div class="book_list">
+			<h1>Book List</h1>
+			<div class="book_list_box">
+				<c:forEach var="book" items="${bookList}">
+					<div class="book_card">
+						<div class="book_image">
+							<img src="${pageContext.request.contextPath}/assets/images/books/${book.image}" />
+						</div>
+						<div class="book_tag">
+							<h2>${book.name}</h2>
+							<p class="writer">${book.authorName}</p>
+							<div class="categories">${book.categoryName}</div>
+							<p class="book_price">
+								$${book.rrp}<sub><del>$${book.salePrice}</del></sub>
+							</p>
+							<a href="book?id=${book.id}" class="book_btn">Details</a>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
-			<div class="mb-2">
-				<label for="lastName" class="form-label">Last name</label> <input
-					type="text" class="form-control" id="lastName"
-					aria-describedby="lastName" required="required" name="lastName" />
-			</div>
-			<div class="mb-2 mt-2">
-				<label for="email" class="form-label">Email address</label> <input
-					type="email" class="form-control" id="email"
-					aria-describedby="email" required="required" name="email" />
-			</div>
-			<div class="mb-2">
-				<label for="password" class="form-label">Password</label> <input
-					type="password" class="form-control" id="password"
-					required="required" name="password" />
-			</div>
-			<button type="submit" class="btn btn-primary">Register</button>
-			<div class="mt-4">
-				<p>
-					Already registered? <a href="login.jsp">Login here</a>
-				</p>
-			</div>
-		</form>
+		</div>
 	</section>
 
 	<footer>

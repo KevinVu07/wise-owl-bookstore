@@ -11,7 +11,7 @@ public class MySqlDBConnector {
 			// 2. create connection string with username + password to connect to mysql
 			Connection conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/wise-owl-bookstore", "wiseowl_admin", "Wiseowl2023");
-			System.out.println(conn);
+			System.out.println("Connection to wise owl bookstore database is " + conn);
 			return conn;
 		} catch (Exception e) {
 			// TODO: handle exception

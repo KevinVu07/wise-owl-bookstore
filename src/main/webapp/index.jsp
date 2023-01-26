@@ -23,26 +23,26 @@
 
 <!-- Favicon plugin -->
 <link rel="apple-touch-icon" sizes="180x180"
-	href="assets/images/favicon/apple-touch-icon.png" />
+	href="${pageContext.request.contextPath}/assets/images/favicon/apple-touch-icon.png" />
 <link rel="icon" type="image/png" sizes="32x32"
-	href="assets/images/favicon/favicon-32x32.png" />
+	href="${pageContext.request.contextPath}/assets/images/favicon/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16"
-	href="assets/images/favicon/favicon-16x16.png" />
-<link rel="manifest" href="assets/images/favicon/site.webmanifest" />
-<link rel="mask-icon" href="assets/images/favicon/safari-pinned-tab.svg"
+	href="${pageContext.request.contextPath}/assets/images/favicon/favicon-16x16.png" />
+<link rel="manifest" href="${pageContext.request.contextPath}/assets/images/favicon/site.webmanifest" />
+<link rel="mask-icon" href="${pageContext.request.contextPath}/assets/images/favicon/safari-pinned-tab.svg"
 	color="#5bbad5" />
-<link rel="shortcut icon" href="assets/images/favicon/favicon.ico" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/favicon/favicon.ico" />
 <meta name="msapplication-TileColor" content="#da532c" />
 <meta name="msapplication-config"
-	content="assets/images/favicon/browserconfig.xml" />
+	content="${pageContext.request.contextPath}/assets/images/favicon/browserconfig.xml" />
 <meta name="theme-color" content="#ffffff" />
 </head>
 <body>
 	<section>
 		<nav class="navbar navbar-expand-lg bg-light">
 			<div class="container-fluid">
-				<a class="navbar-brand logo" href="#"> <img
-					src="assets/images/WiseOwlBookstoreCopy.png" />
+				<a class="navbar-brand logo" href="home"> <img
+					src="${pageContext.request.contextPath}/assets/images/WiseOwlBookstoreCopy.png" />
 				</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -56,13 +56,13 @@
 							aria-current="page" href="#">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Featured</a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="#">New
+						<li class="nav-item"><a class="nav-link" href="new-books">New
 								Books</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Old
 								Books</a></li>
 					</ul>
 					<div>
-						<div class="nav-item dropdown">
+						<!-- <div class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button"
 								data-bs-toggle="dropdown" aria-expanded="false"> User </a>
 							<ul class="dropdown-menu dropdown-menu-end">
@@ -70,6 +70,16 @@
 								<li><a class="dropdown-item" href="#">Cart</a></li>
 								<li><hr class="dropdown-divider" /></li>
 								<li><a class="dropdown-item" href="#">Logout</a></li>
+							</ul>
+						</div> -->
+						
+						<div class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false">
+								Login/Register </a>
+							<ul class="dropdown-menu dropdown-menu-end">
+								<li><a class="dropdown-item" href="login.jsp">Login</a></li>
+								<li><a class="dropdown-item" href="register.jsp">Register</a></li>
 							</ul>
 						</div>
 					</div>
@@ -99,7 +109,7 @@
 			</div>
 
 			<div class="main_img">
-				<img src="assets/images/wiseOwlOnBooks.png" />
+				<img src="${pageContext.request.contextPath}/assets/images/wiseOwlOnBooks.png" />
 			</div>
 		</div>
 	</section>
@@ -135,7 +145,7 @@
 
 	<div class="about">
 		<div class="about_image">
-			<img src="assets/images/openBook.png" />
+			<img src="${pageContext.request.contextPath}/assets/images/openBook.png" />
 		</div>
 
 		<div class="about_tag">
@@ -152,7 +162,7 @@
 		<div class="featured_book_box">
 			<div class="featured_book_card">
 				<div class="featured_book_img">
-					<img src="assets/images/atomicHabits.png" />
+					<img src="${pageContext.request.contextPath}/assets/images/books/atomicHabits.png" />
 				</div>
 				<div class="featured_book_tag">
 					<h2>Atomic Habits</h2>
@@ -165,215 +175,7 @@
 				</div>
 			</div>
 
-			<div class="featured_book_card">
-				<div class="featured_book_img">
-					<img src="assets/images/atomicHabits.png" />
-				</div>
-				<div class="featured_book_tag">
-					<h2>Atomic Habits</h2>
-					<p class="writer">James Clear</p>
-					<div class="categories">Self Help</div>
-					<p class="book_price">
-						$25.50<sub><del>$36.00</del></sub>
-					</p>
-					<a href="#" class="f_btn">Details</a>
-				</div>
-			</div>
-
-			<div class="featured_book_card">
-				<div class="featured_book_img">
-					<img src="assets/images/atomicHabits.png" />
-				</div>
-				<div class="featured_book_tag">
-					<h2>Atomic Habits</h2>
-					<p class="writer">James Clear</p>
-					<div class="categories">Self Help</div>
-					<p class="book_price">
-						$25.50<sub><del>$36.00</del></sub>
-					</p>
-					<a href="#" class="f_btn">Details</a>
-				</div>
-			</div>
-
-			<div class="featured_book_card">
-				<div class="featured_book_img">
-					<img src="assets/images/atomicHabits.png" />
-				</div>
-				<div class="featured_book_tag">
-					<h2>Atomic Habits</h2>
-					<p class="writer">James Clear</p>
-					<div class="categories">Self Help</div>
-					<p class="book_price">
-						$25.50<sub><del>$36.00</del></sub>
-					</p>
-					<a href="#" class="f_btn">Details</a>
-				</div>
-			</div>
-
-			<div class="featured_book_card">
-				<div class="featured_book_img">
-					<img src="assets/images/atomicHabits.png" />
-				</div>
-				<div class="featured_book_tag">
-					<h2>Atomic Habits</h2>
-					<p class="writer">James Clear</p>
-					<div class="categories">Self Help</div>
-					<p class="book_price">
-						$25.50<sub><del>$36.00</del></sub>
-					</p>
-					<a href="#" class="f_btn">Details</a>
-				</div>
-			</div>
-
-			<div class="featured_book_card">
-				<div class="featured_book_img">
-					<img src="assets/images/atomicHabits.png" />
-				</div>
-				<div class="featured_book_tag">
-					<h2>Atomic Habits</h2>
-					<p class="writer">James Clear</p>
-					<div class="categories">Self Help</div>
-					<p class="book_price">
-						$25.50<sub><del>$36.00</del></sub>
-					</p>
-					<a href="#" class="f_btn">Details</a>
-				</div>
-			</div>
-
-			<div class="featured_book_card">
-				<div class="featured_book_img">
-					<img src="assets/images/atomicHabits.png" />
-				</div>
-				<div class="featured_book_tag">
-					<h2>Atomic Habits</h2>
-					<p class="writer">James Clear</p>
-					<div class="categories">Self Help</div>
-					<p class="book_price">
-						$25.50<sub><del>$36.00</del></sub>
-					</p>
-					<a href="#" class="f_btn">Details</a>
-				</div>
-			</div>
-
-			<div class="featured_book_card">
-				<div class="featured_book_img">
-					<img src="assets/images/atomicHabits.png" />
-				</div>
-				<div class="featured_book_tag">
-					<h2>Atomic Habits</h2>
-					<p class="writer">James Clear</p>
-					<div class="categories">Self Help</div>
-					<p class="book_price">
-						$25.50<sub><del>$36.00</del></sub>
-					</p>
-					<a href="#" class="f_btn">Details</a>
-				</div>
-			</div>
-
-			<div class="featured_book_card">
-				<div class="featured_book_img">
-					<img src="assets/images/atomicHabits.png" />
-				</div>
-				<div class="featured_book_tag">
-					<h2>Atomic Habits</h2>
-					<p class="writer">James Clear</p>
-					<div class="categories">Self Help</div>
-					<p class="book_price">
-						$25.50<sub><del>$36.00</del></sub>
-					</p>
-					<a href="#" class="f_btn">Details</a>
-				</div>
-			</div>
-
-			<div class="featured_book_card">
-				<div class="featured_book_img">
-					<img src="assets/images/atomicHabits.png" />
-				</div>
-				<div class="featured_book_tag">
-					<h2>Atomic Habits</h2>
-					<p class="writer">James Clear</p>
-					<div class="categories">Self Help</div>
-					<p class="book_price">
-						$25.50<sub><del>$36.00</del></sub>
-					</p>
-					<a href="#" class="f_btn">Details</a>
-				</div>
-			</div>
-
-			<div class="featured_book_card">
-				<div class="featured_book_img">
-					<img src="assets/images/atomicHabits.png" />
-				</div>
-				<div class="featured_book_tag">
-					<h2>Atomic Habits</h2>
-					<p class="writer">James Clear</p>
-					<div class="categories">Self Help</div>
-					<p class="book_price">
-						$25.50<sub><del>$36.00</del></sub>
-					</p>
-					<a href="#" class="f_btn">Details</a>
-				</div>
-			</div>
-
-			<div class="featured_book_card">
-				<div class="featured_book_img">
-					<img src="assets/images/atomicHabits.png" />
-				</div>
-				<div class="featured_book_tag">
-					<h2>Atomic Habits</h2>
-					<p class="writer">James Clear</p>
-					<div class="categories">Self Help</div>
-					<p class="book_price">
-						$25.50<sub><del>$36.00</del></sub>
-					</p>
-					<a href="#" class="f_btn">Details</a>
-				</div>
-			</div>
-
-			<div class="featured_book_card">
-				<div class="featured_book_img">
-					<img src="assets/images/atomicHabits.png" />
-				</div>
-				<div class="featured_book_tag">
-					<h2>Atomic Habits</h2>
-					<p class="writer">James Clear</p>
-					<div class="categories">Self Help</div>
-					<p class="book_price">
-						$25.50<sub><del>$36.00</del></sub>
-					</p>
-					<a href="#" class="f_btn">Details</a>
-				</div>
-			</div>
-
-			<div class="featured_book_card">
-				<div class="featured_book_img">
-					<img src="assets/images/atomicHabits.png" />
-				</div>
-				<div class="featured_book_tag">
-					<h2>Atomic Habits</h2>
-					<p class="writer">James Clear</p>
-					<div class="categories">Self Help</div>
-					<p class="book_price">
-						$25.50<sub><del>$36.00</del></sub>
-					</p>
-					<a href="#" class="f_btn">Details</a>
-				</div>
-			</div>
-
-			<div class="featured_book_card">
-				<div class="featured_book_img">
-					<img src="assets/images/atomicHabits.png" />
-				</div>
-				<div class="featured_book_tag">
-					<h2>Atomic Habits</h2>
-					<p class="writer">James Clear</p>
-					<div class="categories">Self Help</div>
-					<p class="book_price">
-						$25.50<sub><del>$36.00</del></sub>
-					</p>
-					<a href="#" class="f_btn">Details</a>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 
@@ -382,7 +184,7 @@
 	<footer>
 		<div class="footer_main">
 			<div class="tag">
-				<img src="assets/images/WiseOwlBookstoreCopy.png" alt="" />
+				<img src="${pageContext.request.contextPath}/assets/images/WiseOwlBookstoreCopy.png" alt="" />
 				<p>Created by Kevin Vu - 2023</p>
 			</div>
 

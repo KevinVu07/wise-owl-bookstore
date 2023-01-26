@@ -11,7 +11,7 @@ public class User {
 	private String state;
 	private String postcode;
 
-	public User(int id, String name, String email, String password, String address, String city, String state,
+	public User(int id, String firstName, String lastName, String email, String password, String address, String city, String state,
 			String postcode) {
 		super();
 		this.id = id;
