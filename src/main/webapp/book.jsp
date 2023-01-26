@@ -76,7 +76,7 @@
 
 	<section class="container my-4 h-auto" id="top_book_section">
 		<div class="d-flex" id="book_details_box">
-			<img src="assets/images/atomicHabits.png" />
+			<img src="${pageContext.request.contextPath}/assets/images/books/${book.image}" />
 			<div id="book_details" class="w-75">
 				<h2>${book.name}</h2>
 				<p class="writer my-2">by ${book.authorName}</p>

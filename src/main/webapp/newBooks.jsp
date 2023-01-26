@@ -93,7 +93,7 @@
 							<img src="${pageContext.request.contextPath}/assets/images/books/${book.image}" />
 						</div>
 						<div class="book_tag">
-							<h2>${book.name}</h2>
+							<h4>${book.name}</h4>
 							<p class="writer">${book.authorName}</p>
 							<div class="categories">${book.categoryName}</div>
 							<p class="book_price">

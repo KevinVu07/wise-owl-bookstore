@@ -225,17 +225,15 @@ section .main .main_img img {
 	width: 95%;
 	margin: 0 auto;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	grid-gap: 25px 0;
+	grid-template-columns: repeat(4, 25%);
+	grid-column-gap: 10px;
 }
 
 .book_list .book_list_box .book_card {
-	width: 250px;
-	height: 450px;
 	text-align: center;
 	padding: 5px;
 	border: 1px solid #919191;
-	margin: auto 20px;
+	margin: 10px;
 }
 
 .book_list .book_list_box .book_card:hover {
@@ -243,8 +241,8 @@ section .main .main_img img {
 }
 
 .book_list .book_list_box .book_card .book_image {
-	width: 150px;
-	height: 220px;
+	width: 50% ;
+	height: 50%;
 	margin: 0 auto;
 	cursor: pointer;
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
@@ -254,7 +252,7 @@ section .main .main_img img {
 .book_list .book_list_box .book_card .book_image img {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: fit;
 	object-position: center;
 }
 
