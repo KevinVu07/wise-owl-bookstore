@@ -7,7 +7,7 @@ body {
 }
 
 /* navbar */
-section nav .logo img {
+nav .logo img {
 	width: 100px;
 	cursor: pointer;
 	margin: 8px 0;

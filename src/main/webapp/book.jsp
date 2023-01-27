@@ -35,48 +35,13 @@
 </head>
 <body>
 	<section>
-		<nav class="navbar navbar-expand-lg bg-light">
-			<div class="container-fluid">
-				<a class="navbar-brand logo" href="#"> <img
-					src="assets/images/WiseOwlBookstoreCopy.png" />
-				</a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-					aria-controls="navbarSupportedContent" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="#">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Featured</a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="#">New
-								Books</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Old
-								Books</a></li>
-					</ul>
-					<div>
-						<div class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false"> User </a>
-							<ul class="dropdown-menu dropdown-menu-end">
-								<li><a class="dropdown-item" href="#">Settings</a></li>
-								<li><a class="dropdown-item" href="#">Cart</a></li>
-								<li><hr class="dropdown-divider" /></li>
-								<li><a class="dropdown-item" href="#">Logout</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
+		<jsp:include page="navbar.jsp" />
 	</section>
 
 	<section class="container my-4 h-auto" id="top_book_section">
 		<div class="d-flex" id="book_details_box">
-			<img src="${pageContext.request.contextPath}/assets/images/books/${book.image}" />
+			<img
+				src="${pageContext.request.contextPath}/assets/images/books/${book.image}" />
 			<div id="book_details" class="w-75">
 				<h2>${book.name}</h2>
 				<p class="writer my-2">by ${book.authorName}</p>
@@ -91,13 +56,12 @@
 				</div>
 				<p class="mb-0">
 					<span id="product_version_title"> ${book.type} </span> <br /> <span
-						class="label">Edition Number:</span> ${book.editionNumber}<br /> <span class="label">
-						Published: </span> ${book.publishedDate}<br /> <span class="details_isbn"><span
-						class="label">ISBN: </span>${book.ISBN}<br /></span>
+						class="label">Edition Number:</span> ${book.editionNumber}<br />
+					<span class="label"> Published: </span> ${book.publishedDate}<br />
+					<span class="details_isbn"><span class="label">ISBN:
+					</span>${book.ISBN}<br /></span>
 				</p>
-				<p class="mb-0">
-					Book description: ${book.description}
-				</p>
+				<p class="mb-0">Book description: ${book.description}</p>
 			</div>
 			<div id="book_price">
 				<h4>${book.type}</h4>
@@ -116,26 +80,7 @@
 		</div>
 	</section>
 
-	<footer>
-		<div class="footer_main">
-			<div class="tag">
-				<img src="assets/images/WiseOwlBookstoreCopy.png" alt="" />
-				<p>Created by Kevin Vu - 2023</p>
-			</div>
-
-			<div class="tag">
-				<h1>Quick Link</h1>
-				<a href="#">Home</a> <a href="#">Featured</a> <a href="#">New
-					Books</a> <a href="#">Old Books</a>
-			</div>
-
-			<div class="tag">
-				<h1>Contact Info</h1>
-				<a href="#"><i class="fa-solid fa-phone"></i>+61 3 7010 4321</a> <a
-					href="#"><i class="fa-solid fa-envelope"></i>wiseowlbookstore@gmail.com</a>
-			</div>
-		</div>
-	</footer>
+	<jsp:include page="footer.jsp" />
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
