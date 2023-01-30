@@ -18,7 +18,7 @@ import DAO.UserDAOLogin;
 /**
  * Servlet Filter implementation class LoginAuthenticationFilter
  */
-@WebFilter(urlPatterns = {"/new-books", "/book" })
+@WebFilter(urlPatterns = {"/new-books", "/book", "/settings", "/login", "/account-update" })
 public class LoginAuthenticationFilter extends HttpFilter implements Filter {
 	
 	/**
@@ -47,7 +47,7 @@ public class LoginAuthenticationFilter extends HttpFilter implements Filter {
 		// place your code here
 
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		HttpSession session = httpRequest.getSession(false);
+		HttpSession session = httpRequest.getSession();
 
 		boolean isLoggedIn = (session != null && session.getAttribute("email") != null);
 		System.out.println(session.getAttribute("email"));
@@ -56,7 +56,7 @@ public class LoginAuthenticationFilter extends HttpFilter implements Filter {
 
 		boolean isLoginRequest = httpRequest.getRequestURI().equals(loginURI);
 
-		boolean isLoginPage = httpRequest.getRequestURI().endsWith("login.jsp");
+		boolean isLoginPage = httpRequest.getRequestURI().endsWith("login");
 		
 		System.out.println(isLoggedIn);
 		System.out.println(isLoginRequest);
@@ -74,7 +74,7 @@ public class LoginAuthenticationFilter extends HttpFilter implements Filter {
 		} else {
 			// the user is not logged in, so authentication is required
 			// forward to the login page
-			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
 			dispatcher.forward(request, response);
 		}
 

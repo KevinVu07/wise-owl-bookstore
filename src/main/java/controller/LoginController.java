@@ -54,22 +54,28 @@ public class LoginController extends HttpServlet {
 															// method from login.jsp
 
 		try {
-			
+
 //			boolean result = userDAOLogin.isUserValid(email, password);
-			
+
 			User user = userDAOLogin.getUserByEmailAndPassword(email, password);
-			
+
 			if (user != null) {
-				HttpSession session = request.getSession(false); // get the current session from the browser
-				session.setAttribute("firstName", user.getFirstName());
+				HttpSession session = request.getSession(); // get the current session from the browser
 				session.setAttribute("id", user.getId());
+				session.setAttribute("firstName", user.getFirstName());
+				session.setAttribute("lastName", user.getLastName());
 				session.setAttribute("email", user.getEmail());
+				session.setAttribute("password", user.getPassword());
+				session.setAttribute("address", user.getAddress());
+				session.setAttribute("city", user.getCity());
+				session.setAttribute("state", user.getState());
+				session.setAttribute("postcode", user.getPostcode());
 				String loginSuccess = "Welcome " + user.getFirstName();
 				request.setAttribute("loginSuccess", loginSuccess);
 				RequestDispatcher dp = request.getRequestDispatcher("index.jsp");
+
 				dp.forward(request, response);
 				response.sendRedirect("home");
-
 			} else {
 				String loginError = "The email address or password entered was incorrect. Please try again.";
 				request.setAttribute("loginError", loginError);

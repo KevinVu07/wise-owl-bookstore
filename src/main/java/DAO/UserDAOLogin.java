@@ -86,13 +86,12 @@ public class UserDAOLogin {
 				String state = rs.getString("state");
 				String postcode = rs.getString("postcode");
 				
-				user = new User(id, firstName, email , lastName, password, address, city, state, postcode);
+				user = new User(id, firstName, lastName, email, password, address, city, state, postcode);
 				
 			}
 			;
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
