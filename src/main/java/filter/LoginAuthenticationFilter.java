@@ -22,7 +22,7 @@ import DAO.UserDAOLogin;
 public class LoginAuthenticationFilter extends HttpFilter implements Filter {
 	
 	/**
-	 * @see HttpFilter#HttpFilter()
+	 * @see HttpFilter#HttpFilter()  
 	 */
 	public LoginAuthenticationFilter() {
 		super();
