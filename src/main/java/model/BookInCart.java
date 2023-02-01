@@ -21,7 +21,7 @@ public class BookInCart {
 		this.description = description;
 		this.salePrice = salePrice;
 		this.qty = qty;
-		this.total = total;
+		this.total = salePrice * qty;
 	}
 
 	public int getId() {

@@ -42,12 +42,13 @@
 	<section class="container my-4 h-auto" id="top_book_section">
 		<form action="cart" method="get">
 			<div class="d-flex" id="book_details_box">
-				<input hidden type="text" name="bookId" value="${book.id}" /> 
-				<input hidden type="text" name="bookImage" value="${book.image}" /> 
-				<input hidden type="text" name="bookName" value="${book.name}" /> 
-				<input hidden type="text" name="bookType" value="${book.type}" /> 
-				<input hidden type="text" name="bookDescription" value="${book.description}" /> 
-				<input hidden type="text" name="bookPrice" value="${book.salePrice}" /> 
+				<input type="hidden" name="bookId" value="${book.id}" /> 
+				<input
+					type="hidden" name="bookImage" value="${book.image}" /> <input
+					type="hidden" name="bookName" value="${book.name}" /> <input
+					type="hidden" name="bookType" value="${book.type}" /> <input
+					type="hidden" name="bookDescription" value="${book.description}" />
+				<input type="hidden" name="bookPrice" value="${book.salePrice}" />
 				<img
 					src="${pageContext.request.contextPath}/assets/images/books/${book.image}" />
 				<div id="book_details" class="w-75">
@@ -63,15 +64,13 @@
 						<p class="mx-2">(10 reviews)</p>
 					</div>
 					<p class="mb-0">
-						<span id="product_version_title">
-							${book.type} </span> <br /> <span class="label">Edition Number:</span>
-						${book.editionNumber}<br /> <span class="label">
-							Published: </span> ${book.publishedDate}<br /> <span
-							class="details_isbn"><span class="label">ISBN: </span>${book.ISBN}<br /></span>
+						<span id="product_version_title"> ${book.type} </span> <br /> <span
+							class="label">Edition Number:</span> ${book.editionNumber}<br />
+						<span class="label"> Published: </span> ${book.publishedDate}<br />
+						<span class="details_isbn"><span class="label">ISBN:
+						</span>${book.ISBN}<br /></span>
 					</p>
-					<p class="mb-0">
-						Book description: ${book.description}
-					</p>
+					<p class="mb-0">Book description: ${book.description}</p>
 				</div>
 				<div id="book_price">
 					<h4>${book.type}</h4>

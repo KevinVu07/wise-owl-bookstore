@@ -38,37 +38,35 @@ public class CartController extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		// add book to cart
-		String id = request.getParameter("bookId");
+		int id = Integer.parseInt(request.getParameter("bookId"));
 		String image = request.getParameter("bookImage");
 		String name = request.getParameter("bookName");
 		String type = request.getParameter("bookType");
 		String description = request.getParameter("bookDescription");
 		String salePrice = request.getParameter("bookPrice");
 		int qty = 1;
-		Double total = 50.00;
-		BookInCart book = new BookInCart(Integer.parseInt(id), image, name, type, description, Double.parseDouble(salePrice), qty, total);
+		double total = Double.parseDouble(salePrice) * qty;
+		BookInCart book = new BookInCart(id, image, name, type, description, Double.parseDouble(salePrice), qty, total);
 		List<BookInCart> booksInCart = new ArrayList<BookInCart>();
 		booksInCart.add(book);
-		
-		HttpSession session = request.getSession();
-		
-		
+
+		HttpSession session = request.getSession(false);
+
 		if (session.getAttribute("cart") == null) {
 			Cart cart = new Cart();
 			cart.setBooksInCart(booksInCart);
 			session.setAttribute("cart", cart);
 		} else {
 			Cart cart = (Cart) session.getAttribute("cart");
-			cart.addBook(book);
+			if (!cart.getBooksInCart().contains(book)) {
+				cart.addBook(book);
+			} else {
+				cart.updateBookInCart(id);
+			}
 		}
-//		cart.getBooks().add(book);
-		
-		
-		
-		
-		
-		// redirect to book details page
-		
+
+		// redirect to cart details page
+
 		response.sendRedirect("cart.jsp");
 	}
 

@@ -1,6 +1,5 @@
 package model;
 
-
 import java.util.List;
 
 import model.BookInCart;
@@ -28,7 +27,16 @@ public class Cart {
 		}
 		return false;
 	}
-	
-	
- 
+
+	public void updateBookInCart(int id) {
+		for (BookInCart book : booksInCart) {
+			if (book.getId() == id) {
+				int newQty = book.getQty() + 1;
+				book.setQty(newQty);
+				double newTotal = book.getTotal() * newQty;
+				book.setTotal(newTotal);
+			}
+		}
+	}
+
 }

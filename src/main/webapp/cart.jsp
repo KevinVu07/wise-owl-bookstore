@@ -1,3 +1,4 @@
+<%@page import="model.BookDetailsModel"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
@@ -5,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Cart</title>
 <!-- Bootstrap, CSS, and Fontawesome plug in -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/style.css" />
@@ -68,8 +69,22 @@
 								</div>
 							</td>
 							<td>$${book.salePrice}</td>
-							<td>${book.qty}</td>
+							
+							
+							
+							</form>
+							<td>
+							<form action="" method="post">
+							<input type="hidden" name="bookId" value="${book.id}" />
+							<div class="form-group d-flex justify-content-between">
+								<a class="btn btn-sm btn-decre" href="cartQtyUpdate?action=dec&id=${book.id}"><i class="fas fa-minus-square"></i></a>
+								${book.qty}
+								<a class="btn btn-sm btn-incre" href="cartQtyUpdate?action=inc&id=${book.id}"><i class="fas fa-plus-square"></i></a>
+							</div>
+							</form>
+							</td>
 							<td>$${book.total}</td>
+							
 						</tr>
 					</c:forEach>
 

@@ -20,7 +20,7 @@ import entity.User;
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	UserDAOLogin userDAOLogin = new UserDAOLogin();
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -56,10 +56,13 @@ public class LoginController extends HttpServlet {
 		try {
 
 //			boolean result = userDAOLogin.isUserValid(email, password);
+			UserDAOLogin userDAOLogin = new UserDAOLogin();
+			
+			
+			boolean result = userDAOLogin.isUserValid(email, password);
 
-			User user = userDAOLogin.getUserByEmailAndPassword(email, password);
-
-			if (user != null) {
+			if (result) {
+				User user = userDAOLogin.getUserByEmailAndPassword(email, password);
 				HttpSession session = request.getSession(); // get the current session from the browser
 				session.setAttribute("id", user.getId());
 				session.setAttribute("firstName", user.getFirstName());
@@ -71,10 +74,8 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("state", user.getState());
 				session.setAttribute("postcode", user.getPostcode());
 				String loginSuccess = "Welcome " + user.getFirstName();
-				request.setAttribute("loginSuccess", loginSuccess);
-				RequestDispatcher dp = request.getRequestDispatcher("index.jsp");
+				session.setAttribute("loginSuccess", loginSuccess);
 
-				dp.forward(request, response);
 				response.sendRedirect("home");
 			} else {
 				String loginError = "The email address or password entered was incorrect. Please try again.";

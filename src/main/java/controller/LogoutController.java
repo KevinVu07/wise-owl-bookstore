@@ -32,7 +32,7 @@ public class LogoutController extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(false);
 		session.removeAttribute("firstName");
-		session.removeAttribute("email");
+//		session.removeAttribute("email");
 		response.sendRedirect("login.jsp");
 	}
 
