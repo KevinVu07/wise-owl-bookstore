@@ -360,3 +360,17 @@ footer .footer_main .tag i {
 #book_details .writer {
 	color: #919191;
 }
+
+
+/* Cart */
+
+#cartBookImage img {
+	width: 100px !important; 
+	height: auto !important;
+	margin: 0 10px;
+}
+
+#cartBookDescription {
+	text-overflow: ellipsis !important;
+}
+

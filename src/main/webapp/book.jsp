@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,45 +40,57 @@
 	</section>
 
 	<section class="container my-4 h-auto" id="top_book_section">
-		<div class="d-flex" id="book_details_box">
-			<img
-				src="${pageContext.request.contextPath}/assets/images/books/${book.image}" />
-			<div id="book_details" class="w-75">
-				<h2>${book.name}</h2>
-				<p class="writer my-2">by ${book.authorName}</p>
-				<p class="categories my-2">Category: ${book.categoryName}</p>
-				<div class="d-flex">
-					<div>
-						<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star-half-stroke"></i>
+		<form action="cart" method="get">
+			<div class="d-flex" id="book_details_box">
+				<input hidden type="text" name="bookId" value="${book.id}" /> 
+				<input hidden type="text" name="bookImage" value="${book.image}" /> 
+				<input hidden type="text" name="bookName" value="${book.name}" /> 
+				<input hidden type="text" name="bookType" value="${book.type}" /> 
+				<input hidden type="text" name="bookDescription" value="${book.description}" /> 
+				<input hidden type="text" name="bookPrice" value="${book.salePrice}" /> 
+				<img
+					src="${pageContext.request.contextPath}/assets/images/books/${book.image}" />
+				<div id="book_details" class="w-75">
+					<h2>${book.name}</h2>
+					<p class="writer my-2">by ${book.authorName}</p>
+					<p class="categories my-2">Category: ${book.categoryName}</p>
+					<div class="d-flex">
+						<div>
+							<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star-half-stroke"></i>
+						</div>
+						<p class="mx-2">(10 reviews)</p>
 					</div>
-					<p class="mx-2">(10 reviews)</p>
-				</div>
-				<p class="mb-0">
-					<span id="product_version_title"> ${book.type} </span> <br /> <span
-						class="label">Edition Number:</span> ${book.editionNumber}<br />
-					<span class="label"> Published: </span> ${book.publishedDate}<br />
-					<span class="details_isbn"><span class="label">ISBN:
-					</span>${book.ISBN}<br /></span>
-				</p>
-				<p class="mb-0">Book description: ${book.description}</p>
-			</div>
-			<div id="book_price">
-				<h4>${book.type}</h4>
-				<hr />
-				<p>
-					<del>RRP $${book.rrp}</del>
-					<br /> <strong>$${book.salePrice}</strong>
-				</p>
-				<div class="buy_options">
-					<button>Add to cart</button>
-					<p class="my-4">
-						Also available in <a href="#">old book</a> from $12.50
+					<p class="mb-0">
+						<span id="product_version_title">
+							${book.type} </span> <br /> <span class="label">Edition Number:</span>
+						${book.editionNumber}<br /> <span class="label">
+							Published: </span> ${book.publishedDate}<br /> <span
+							class="details_isbn"><span class="label">ISBN: </span>${book.ISBN}<br /></span>
+					</p>
+					<p class="mb-0">
+						Book description: ${book.description}
 					</p>
 				</div>
+				<div id="book_price">
+					<h4>${book.type}</h4>
+					<hr />
+					<p>
+						<del>RRP $${book.rrp}</del>
+						<br /> <strong>$${book.salePrice}</strong>
+					</p>
+					<div class="buy_options">
+						<button type="submit">Add to cart</button>
+						<p class="my-4">
+							Also available in <a href="#">old book</a> from $12.50
+						</p>
+					</div>
+				</div>
 			</div>
-		</div>
+		</form>
+
+
 	</section>
 
 	<jsp:include page="footer.jsp" />
