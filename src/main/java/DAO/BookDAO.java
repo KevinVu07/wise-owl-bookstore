@@ -18,7 +18,6 @@ public class BookDAO {
 
 		// make connection to MYSQL LOCALHOST, Schema book_store
 		Connection connection = MySqlDBConnector.makeConnection();
-		System.out.println("Connection to wise owl bookstore database has been successful... " + connection);
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sqlQuery = "SELECT b.id as book_id, b.name as book_name, b.description, b.category_id, c.name as category_name, b.type, b.edition_number, b.published_date, b.ISBN, b.rrp, b.sale_price, b.rating, b.author_id, a.name as author_name, b.image"

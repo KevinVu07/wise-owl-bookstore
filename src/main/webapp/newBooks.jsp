@@ -62,7 +62,7 @@
 							<p class="writer">${book.authorName}</p>
 							<div class="categories">${book.categoryName}</div>
 							<p class="book_price">
-								$${book.rrp}<sub><del>$${book.salePrice}</del></sub>
+								$${book.salePrice}<sub><del>$${book.rrp}</del></sub>
 							</p>
 							<a href="book?id=${book.id}" class="book_btn">Details</a>
 						</div>

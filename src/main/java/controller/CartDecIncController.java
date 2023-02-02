@@ -1,14 +1,11 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,16 +19,16 @@ import model.BookInCartModel;
 import model.Cart;
 
 /**
- * Servlet implementation class CartController
+ * Servlet implementation class CartDecIncController
  */
-@WebServlet("/cart")
-public class CartController extends HttpServlet {
+@WebServlet("/cartDecInc")
+public class CartDecIncController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CartController() {
+	public CartDecIncController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -44,14 +41,47 @@ public class CartController extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+	
+		String action = request.getParameter("action");
+		int bookId = Integer.parseInt(request.getParameter("id"));
+		
+		HttpSession session = request.getSession(false);
+		int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
+		
+		
 		BookInCartDAO bookInCartDAO = new BookInCartDAO();
+
+		BookInCartModel book = bookInCartDAO.getBookInCartByBookIdAndUserId(bookId, userId);
 		
-		List<BookInCartModel> booksInCart = bookInCartDAO.getAll();
+		int newQty = 0;
+		if (action.equals("dec") && book.getQty() > 0) {
+			newQty = book.getQty() - 1;
+		} else if (action.equals("inc")) {
+			newQty = book.getQty() + 1;
+		}
 		
-		request.setAttribute("booksInCart", booksInCart);
+		double newTotal = book.getSalePrice() * newQty;
 		
-		RequestDispatcher dp = request.getRequestDispatcher("cart.jsp");
-		dp.forward(request, response);
+		Connection connection = MySqlDBConnector.makeConnection();
+
+		PreparedStatement ps = null;
+		String sqlQuery = "UPDATE `cart` SET `book_qty` = ?, `total` = ? WHERE (`book_id` = ? AND `user_id` = ?)";
+		
+		
+		try {
+			ps = connection.prepareStatement(sqlQuery);
+			ps.setInt(1, newQty);
+			ps.setDouble(2, newTotal);
+			ps.setInt(3, bookId);
+			ps.setInt(4, userId);
+
+			ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		response.sendRedirect("cart");
+
 	}
 
 	/**
@@ -62,5 +92,6 @@ public class CartController extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-}
+	}
+
 }

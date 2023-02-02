@@ -1,8 +1,8 @@
 package model;
 
-import model.BookInCart;
+import model.BookInCartModel;
 
-public class BookInCart {
+public class BookInCartModel {
 	private int id;
 	private String image;
 	private String name;
@@ -12,7 +12,7 @@ public class BookInCart {
 	private int qty;
 	private double total;
 	
-	public BookInCart(int id, String image, String name, String type, String description, double salePrice, int qty, double total) {
+	public BookInCartModel(int id, String image, String name, String type, String description, double salePrice, int qty, double total) {
 		super();
 		this.id = id;
 		this.image = image;
@@ -90,7 +90,7 @@ public class BookInCart {
 
 	@Override
 	public boolean equals(Object o) {
-		BookInCart book = (BookInCart) o;
+		BookInCartModel book = (BookInCartModel) o;
 		if (this.id == book.getId()) {
 			return true;
 		}

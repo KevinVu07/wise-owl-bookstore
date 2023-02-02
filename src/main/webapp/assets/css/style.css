@@ -13,6 +13,13 @@ nav .logo img {
 	margin: 8px 0;
 }
 
+#cartIconNav {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* main section */
+
 section .main {
 	display: flex;
 	align-items: center;

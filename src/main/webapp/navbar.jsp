@@ -37,16 +37,20 @@
 						</div>
 					</c:when>
 					<c:otherwise>
-						<div class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false"> ${sessionScope.firstName} </a>
-							<ul class="dropdown-menu dropdown-menu-end">
-								<li><a class="dropdown-item" href="account-update">Account</a></li>
-								<li><a class="dropdown-item" href="#">Cart</a></li>
-								<li><hr class="dropdown-divider" /></li>
-								<li><a class="dropdown-item" href="logout">Logout</a></li>
-							</ul>
+						<div class="d-flex">
+							<a id="cartIconNav" class="mx-2" href="cart"><i class="fas fa-shopping-cart mx-2" href="cart"></i></a>
+							<div class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button"
+									data-bs-toggle="dropdown" aria-expanded="false"> ${sessionScope.firstName} </a>
+								<ul class="dropdown-menu dropdown-menu-end">
+									<li><a class="dropdown-item" href="account-update">Account</a></li>
+									<li><a class="dropdown-item" href="#">Cart</a></li>
+									<li><hr class="dropdown-divider" /></li>
+									<li><a class="dropdown-item" href="logout">Logout</a></li>
+								</ul>
+							</div>
 						</div>
+						
 					</c:otherwise>
 				</c:choose>
 			</div>

@@ -44,6 +44,10 @@
 
 	<section class="container my-4 h-auto d-flex justify-content-between">
 		<div id="cartBox" class="container-fluid w-75 mx-4">
+			<c:if test="${addBookSuccess != null}">
+				<p class="mt-2 text-center text-success">${addBookSuccess}</p>
+				<c:remove var="addBookSuccess" scope="session" />
+			</c:if>
 			<table class="table">
 				<thead>
 					<tr>
@@ -54,7 +58,7 @@
 					</tr>
 				</thead>
 				<tbody class="table-responsive">
-					<c:forEach var="book" items="${sessionScope.cart.booksInCart}">
+					<c:forEach var="book" items="${booksInCart}">
 						<tr>
 							<td class="d-flex w-auto">
 								<div id="cartBookImage">
@@ -69,17 +73,14 @@
 								</div>
 							</td>
 							<td>$${book.salePrice}</td>
-							
-							
-							
 							</form>
 							<td>
-							<form action="" method="post">
+							<form action="" method="get">
 							<input type="hidden" name="bookId" value="${book.id}" />
 							<div class="form-group d-flex justify-content-between">
-								<a class="btn btn-sm btn-decre" href="cartQtyUpdate?action=dec&id=${book.id}"><i class="fas fa-minus-square"></i></a>
+								<a class="btn btn-sm btn-decre" href="cartDecInc?action=dec&id=${book.id}"><i class="fas fa-minus-square"></i></a>
 								${book.qty}
-								<a class="btn btn-sm btn-incre" href="cartQtyUpdate?action=inc&id=${book.id}"><i class="fas fa-plus-square"></i></a>
+								<a class="btn btn-sm btn-incre" href="cartDecInc?action=inc&id=${book.id}"><i class="fas fa-plus-square"></i></a>
 							</div>
 							</form>
 							</td>
