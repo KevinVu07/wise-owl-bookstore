@@ -65,12 +65,6 @@
 					aria-describedby="lastName" name="lastName"
 					placeholder="${sessionScope.lastName}" />
 			</div>
-			<div class="mb-2 mt-2">
-				<label for="email" class="form-label">Email address</label> <input
-					type="email" class="form-control" id="email"
-					aria-describedby="email" disabled name="email"
-					placeholder="${sessionScope.email}" />
-			</div>
 			<div class="mb-2">
 				<label for="address" class="form-label">Address</label> <input
 					type="text" class="form-control" id="address" name="address"

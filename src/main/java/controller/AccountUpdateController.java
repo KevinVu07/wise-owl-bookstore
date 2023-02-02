@@ -89,6 +89,16 @@ public class AccountUpdateController extends HttpServlet {
 			String accountUpdated = "Account details updated!";
 			request.setAttribute("accountUpdated", accountUpdated);
 			
+			UserDAOLogin userDAOLogin = new UserDAOLogin();
+			User user = userDAOLogin.getUserByEmailAndPassword(email, password);
+			
+			session.setAttribute("firstName", user.getFirstName());
+			session.setAttribute("lastName", user.getLastName());
+			session.setAttribute("address", user.getAddress());
+			session.setAttribute("city", user.getCity());
+			session.setAttribute("state", user.getState());
+			session.setAttribute("postcode", user.getPostcode());
+			
 			RequestDispatcher dp = request.getRequestDispatcher("account.jsp");
 			dp.forward(request, response);
 
