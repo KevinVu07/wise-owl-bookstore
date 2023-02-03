@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -53,6 +54,8 @@ public class CartDecIncController extends HttpServlet {
 
 		BookInCartModel book = bookInCartDAO.getBookInCartByBookIdAndUserId(bookId, userId);
 		
+		Connection connection = MySqlDBConnector.makeConnection();
+		
 		int newQty = 0;
 		if (action.equals("dec") && book.getQty() > 0) {
 			newQty = book.getQty() - 1;
@@ -60,13 +63,38 @@ public class CartDecIncController extends HttpServlet {
 			newQty = book.getQty() + 1;
 		}
 		
+		if (newQty == 0) {
+			PreparedStatement ps = null;
+			String sqlQuery = "DELETE FROM `cart` WHERE (`book_id` = ? AND `user_id` = ?)";
+			
+			try {
+				ps = connection.prepareStatement(sqlQuery);
+				ps.setInt(1, bookId);
+				ps.setDouble(2, userId);
+
+				ps.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (ps != null) {
+						ps.close();
+					}
+					if (connection != null) {
+						connection.close();
+					}
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+		} else {
+		
 		double newTotal = book.getSalePrice() * newQty;
 		
-		Connection connection = MySqlDBConnector.makeConnection();
-
 		PreparedStatement ps = null;
 		String sqlQuery = "UPDATE `cart` SET `book_qty` = ?, `total` = ? WHERE (`book_id` = ? AND `user_id` = ?)";
-		
 		
 		try {
 			ps = connection.prepareStatement(sqlQuery);
@@ -76,8 +104,24 @@ public class CartDecIncController extends HttpServlet {
 			ps.setInt(4, userId);
 
 			ps.executeUpdate();
+			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		}
 		
 		response.sendRedirect("cart");
