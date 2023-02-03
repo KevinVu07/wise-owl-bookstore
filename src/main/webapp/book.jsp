@@ -40,7 +40,7 @@
 	</section>
 
 	<section class="container my-4 h-auto" id="top_book_section">
-		<form action="addToCart" method="get">
+		<form action="add-to-cart" method="get">
 			<div class="d-flex" id="book_details_box">
 				<input type="hidden" name="bookId" value="${book.id}" /> 
 				<input

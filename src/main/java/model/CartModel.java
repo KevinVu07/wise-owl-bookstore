@@ -6,10 +6,10 @@ import model.BookInCartModel;
 
 // DTO (Data Transfer Object)
 
-public class Cart {
+public class CartModel {
 	private List<BookInCartModel> booksInCart;
 
-	public Cart() {
+	public CartModel() {
 		super();
 	}
 

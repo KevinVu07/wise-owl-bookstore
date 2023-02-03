@@ -58,10 +58,6 @@ public class LoginAuthenticationFilter extends HttpFilter implements Filter {
 
 		boolean isLoginPage = httpRequest.getRequestURI().endsWith("login");
 		
-		System.out.println(isLoggedIn);
-		System.out.println(isLoginRequest);
-		System.out.println(isLoginPage);
-
 		if (isLoggedIn && (isLoginRequest || isLoginPage)) {
 			// the user is already logged in and they are trying to login again
 			// then forward to the homepage

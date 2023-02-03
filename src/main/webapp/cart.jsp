@@ -78,9 +78,9 @@
 							<form action="" method="get">
 							<input type="hidden" name="bookId" value="${book.id}" />
 							<div class="form-group d-flex justify-content-between">
-								<a class="btn btn-sm btn-decre" href="cartDecInc?action=dec&id=${book.id}"><i class="fas fa-minus-square"></i></a>
+								<a class="btn btn-sm btn-decre" href="cart-dec-inc?action=dec&id=${book.id}"><i class="fas fa-minus-square"></i></a>
 								${book.qty}
-								<a class="btn btn-sm btn-incre" href="cartDecInc?action=inc&id=${book.id}"><i class="fas fa-plus-square"></i></a>
+								<a class="btn btn-sm btn-incre" href="cart-dec-inc?action=inc&id=${book.id}"><i class="fas fa-plus-square"></i></a>
 							</div>
 							</form>
 							</td>

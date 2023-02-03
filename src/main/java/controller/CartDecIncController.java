@@ -17,12 +17,12 @@ import javax.servlet.http.HttpSession;
 import DAO.BookInCartDAO;
 import db.util.MySqlDBConnector;
 import model.BookInCartModel;
-import model.Cart;
+import model.CartModel;
 
 /**
  * Servlet implementation class CartDecIncController
  */
-@WebServlet("/cartDecInc")
+@WebServlet("/cart-dec-inc")
 public class CartDecIncController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -273,12 +273,7 @@ section .main .main_img img {
 	margin-bottom: 10px;
 }
 
-.book_list .book_list_box .book_card .book_tag .book_btn {
-	padding: 8px;
-	border: 2px solid #f2ad1a;
-	text-decoration: none;
-	color: #000;
-}
+
 
 .book_list .book_list_box .book_card .book_tag p {
 	margin-bottom: 5px;
@@ -302,6 +297,13 @@ section .main .main_img img {
 .book_list .book_price sub {
 	font-weight: 100;
 	padding: 0 5px;
+}
+
+#bookDetailsLink {
+	padding: 8px;
+	border: 2px solid #f2ad1a;
+	text-decoration: none;
+	color: #000;
 }
 
 /* Footer */

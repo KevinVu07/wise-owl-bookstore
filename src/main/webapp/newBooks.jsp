@@ -50,9 +50,10 @@
 	<section>
 		<div class="book_list">
 			<h1>Book List</h1>
+			
 			<div class="book_list_box">
 				<c:forEach var="book" items="${bookList}">
-					<div class="book_card">
+					<div class="book_card d-flex flex-column justify-content-between">
 						<div class="book_image">
 							<img
 								src="${pageContext.request.contextPath}/assets/images/books/${book.image}" />
@@ -64,11 +65,36 @@
 							<p class="book_price">
 								$${book.salePrice}<sub><del>$${book.rrp}</del></sub>
 							</p>
-							<a href="book?id=${book.id}" class="book_btn">Details</a>
+						</div>
+						<div id="purchase" class="d-flex flex-column justify-content-between">
+							<div>
+								<a id="bookDetailsLink" href="book?id=${book.id}" class="book_btn mb-2">Details</a>
+							</div>
+							<div class="d-flex justify-content-center">
+								<form class="mt-3 mx-1" action="add-to-cart" method="get">
+									<div>
+										<input type="hidden" name="bookId" value="${book.id}" /> 
+										<input type="hidden" name="bookImage" value="${book.image}" /> 
+										<input type="hidden" name="bookName" value="${book.name}" /> 
+										<input type="hidden" name="bookType" value="${book.type}" /> 
+										<input type="hidden" name="bookDescription" value="${book.description}" />
+										<input type="hidden" name="bookPrice" value="${book.salePrice}" />
+										<button type="submit" class="btn btn-success">Add To Cart</button>		
+									</div>
+								</form>	
+								<form class="mt-3 mx-1" action="order-now" method="post">
+									<div>
+										<input type="hidden" name="bookId" value="${book.id}" /> 
+										<input type="hidden" name="bookPrice" value="${book.salePrice}" />
+										<button class="btn btn-success">Buy Now</button>
+									</div>	
+								</form>	
+							</div>
 						</div>
 					</div>
 				</c:forEach>
 			</div>
+			
 		</div>
 	</section>
 

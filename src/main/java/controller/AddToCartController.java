@@ -20,12 +20,12 @@ import DAO.BookInCartDAO;
 import db.util.MySqlDBConnector;
 import model.BookDetailsModel;
 import model.BookInCartModel;
-import model.Cart;
+import model.CartModel;
 
 /**
  * Servlet implementation class CartController
  */
-@WebServlet("/addToCart")
+@WebServlet("/add-to-cart")
 public class AddToCartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -63,7 +63,6 @@ public class AddToCartController extends HttpServlet {
 			ps.setInt(1, userId);
 			ps.setInt(2, bookId);
 			rs = ps.executeQuery();
-			System.out.println("ps at add to cart is " + ps);
 //			System.out.println("there is already this book in cart " + rs.next());
 			
 			if (!rs.next()) {

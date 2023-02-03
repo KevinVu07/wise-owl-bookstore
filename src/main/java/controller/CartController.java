@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import DAO.BookInCartDAO;
 import db.util.MySqlDBConnector;
 import model.BookInCartModel;
-import model.Cart;
+import model.CartModel;
 
 /**
  * Servlet implementation class CartController
