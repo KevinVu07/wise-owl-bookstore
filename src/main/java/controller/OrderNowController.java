@@ -84,7 +84,8 @@ public class OrderNowController extends HttpServlet {
 					boolean result = orderDAO.insertOrder(order);
 
 					if (result) {
-						response.sendRedirect("orders.jsp");
+						System.out.println("this book has been added to order list...");
+						
 					} else {
 						System.out.println("order failed...");
 					}
@@ -144,6 +145,7 @@ public class OrderNowController extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
+			response.sendRedirect("order-summary");
 		} 
 	
 

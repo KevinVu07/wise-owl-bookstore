@@ -1,22 +1,25 @@
 package model;
 
-
-public class OrderModel {
+public class OrderListModel {
 	private int id;
 	private int userId;
 	private int bookId;
+	private String bookName;
+	private String bookImage;
 	private double bookPrice;
 	private int orderQty;
 	private double orderTotal;
 	private String orderDate;
 	
-	public OrderModel() {};
+	public OrderListModel() {};
 	
-	public OrderModel(int id, int userId, int bookId, double bookPrice, int orderQty, double orderTotal, String orderDate) {
+	public OrderListModel(int id, int userId, int bookId, String bookName, String bookImage, double bookPrice, int orderQty, double orderTotal, String orderDate) {
 		super();
 		this.id = id;
 		this.userId = userId;
 		this.bookId = bookId;
+		this.bookName = bookName;
+		this.bookImage = bookImage;
 		this.bookPrice = bookPrice;
 		this.orderQty = orderQty;
 		this.orderTotal = orderTotal;
@@ -77,6 +80,22 @@ public class OrderModel {
 
 	public void setBookPrice(double bookPrice) {
 		this.bookPrice = bookPrice;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public String getBookImage() {
+		return bookImage;
+	}
+
+	public void setBookImage(String bookImage) {
+		this.bookImage = bookImage;
 	}
 	
 	

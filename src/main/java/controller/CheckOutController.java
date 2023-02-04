@@ -113,11 +113,15 @@ public class CheckOutController extends HttpServlet {
 					ps.executeUpdate();
 
 				}
+				
+				bookInCartDAO.removeBookInCartByBookIdAndUserId(bookId, userId);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		response.sendRedirect("orders.jsp");
+		
+		response.sendRedirect("order-summary");
 	}
 
 	/**

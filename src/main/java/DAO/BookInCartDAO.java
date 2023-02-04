@@ -22,7 +22,7 @@ public class BookInCartDAO {
 		PreparedStatement ps = null;
 		String sqlQuery = "SELECT c.id, c.user_id, c.book_id, b.image, b.name, b.description, b.type, b.sale_price, c.book_qty, c.total"
 				+ " FROM `book` b JOIN `cart` c ON b.id = c.book_id";
-				
+
 		try {
 			ps = connection.prepareStatement(sqlQuery);
 			// RESULT SET / RESULT GRID
@@ -38,7 +38,7 @@ public class BookInCartDAO {
 				double salePrice = rs.getDouble("sale_price");
 				int qty = rs.getInt("book_qty");
 				double total = rs.getDouble("total");
-				
+
 				BookInCartModel book = new BookInCartModel(id, image, name, type, description, salePrice, qty, total);
 
 				booksInCart.add(book);
@@ -68,7 +68,7 @@ public class BookInCartDAO {
 
 		return booksInCart;
 	}
-	
+
 	public BookInCartModel getBookInCartByBookIdAndUserId(int bookId, int userId) {
 		BookInCartModel book = null;
 
@@ -77,9 +77,8 @@ public class BookInCartDAO {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sqlQuery = "SELECT c.id, c.user_id, c.book_id, b.image, b.name, b.description, b.type, b.sale_price, c.book_qty, c.total"
-				+ " FROM `book` b JOIN `cart` c ON b.id = c.book_id"
-				+ " WHERE book_id = ? AND user_id = ?";
-		try { 
+				+ " FROM `book` b JOIN `cart` c ON b.id = c.book_id" + " WHERE book_id = ? AND user_id = ?";
+		try {
 			ps = connection.prepareStatement(sqlQuery);
 			ps.setInt(1, bookId);
 			ps.setDouble(2, userId);
@@ -95,7 +94,7 @@ public class BookInCartDAO {
 				double salePrice = rs.getDouble("sale_price");
 				int qty = rs.getInt("book_qty");
 				double total = rs.getDouble("total");
-				
+
 				book = new BookInCartModel(bookId, image, name, type, description, salePrice, qty, total);
 			}
 			;
@@ -122,4 +121,37 @@ public class BookInCartDAO {
 		}
 		return book;
 	}
+
+	public void removeBookInCartByBookIdAndUserId(int bookId, int userId) {
+		Connection connection = MySqlDBConnector.makeConnection();
+		PreparedStatement ps = null;
+		String sqlQuery = "DELETE FROM `cart` WHERE book_id = ? AND user_id = ?";
+
+		try {
+			ps = connection.prepareStatement(sqlQuery);
+			ps.setInt(1, bookId);
+			ps.setDouble(2, userId);
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+
+				if (ps != null) {
+					ps.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+
 }

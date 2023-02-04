@@ -38,13 +38,15 @@
 					</c:when>
 					<c:otherwise>
 						<div class="d-flex">
-							<a id="cartIconNav" class="mx-2" href="cart"><i class="fas fa-shopping-cart mx-2" href="cart"></i></a>
-							<div class="nav-item dropdown">
+							<a id="cartIconNav" class="mx-1" href="order-summary"><i class="fa-solid fa-money-check-dollar"></i></a>
+							<a id="cartIconNav" class="mx-1" href="cart"><i class="fas fa-shopping-cart mx-2" href="cart"></i></a>
+							<div class="nav-item dropdown mx-1">
 								<a class="nav-link dropdown-toggle" href="#" role="button"
 									data-bs-toggle="dropdown" aria-expanded="false"> ${sessionScope.firstName} </a>
 								<ul class="dropdown-menu dropdown-menu-end">
 									<li><a class="dropdown-item" href="account-update">Account</a></li>
-									<li><a class="dropdown-item" href="#">Cart</a></li>
+									<li><a class="dropdown-item" href="cart">Cart</a></li>
+									<li><a class="dropdown-item" href="order-summary">Order Summary</a></li>
 									<li><hr class="dropdown-divider" /></li>
 									<li><a class="dropdown-item" href="logout">Logout</a></li>
 								</ul>

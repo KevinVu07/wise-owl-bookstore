@@ -20,6 +20,7 @@ import DAO.BookInCartDAO;
 import db.util.MySqlDBConnector;
 import model.BookInCartModel;
 import model.CartModel;
+import model.OrderListModel;
 
 /**
  * Servlet implementation class CartController
@@ -43,12 +44,22 @@ public class CartController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		
+		HttpSession session = request.getSession(false);
+			
 		BookInCartDAO bookInCartDAO = new BookInCartDAO();
 		
 		List<BookInCartModel> booksInCart = bookInCartDAO.getAll();
 		
 		request.setAttribute("booksInCart", booksInCart);
+		
+		double cartTotal = 0;
+		for (BookInCartModel book : booksInCart) {
+			cartTotal = cartTotal + book.getTotal();
+			cartTotal = (double)Math.round(cartTotal * 100d) / 100d; 
+		}
+		
+		session.setAttribute("cartTotal", cartTotal);
 		
 		RequestDispatcher dp = request.getRequestDispatcher("cart.jsp");
 		dp.forward(request, response);

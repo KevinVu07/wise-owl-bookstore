@@ -41,84 +41,90 @@
 	<section>
 		<jsp:include page="navbar.jsp" />
 	</section>
-
-	<section class="container my-4 h-auto d-flex justify-content-between">
-		<div id="cartBox" class="container-fluid w-75 mx-4">
-			<c:if test="${addBookSuccess != null}">
-				<p class="mt-2 text-center text-success">${addBookSuccess}</p>
-				<c:remove var="addBookSuccess" scope="session" />
-			</c:if>
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">Your Cart</th>
-						<th scope="col">Each</th>
-						<th scope="col">Qty</th>
-						<th scope="col">Total</th>
-					</tr>
-				</thead>
-				<tbody class="table-responsive">
-					<c:forEach var="book" items="${booksInCart}">
-						<tr>
-							<td class="d-flex w-auto">
-								<div id="cartBookImage">
-									<img
-										src="${pageContext.request.contextPath}/assets/images/books/${book.image}" />
-								</div>
-
-								<div id="cartBookDetails">
-									<h4>${book.name}</h4>
-									<p id="cartBookDescription">${book.description}</p>
-									<p>${book.type}</p>
-								</div>
-							</td>
-							<td>$${book.salePrice}</td>
-							</form>
-							<td>
-								<form action="" method="get">
-									<input type="hidden" name="bookId" value="${book.id}" />
-									<div class="form-group d-flex justify-content-between">
-										<a class="btn btn-sm btn-decre"
-											href="cart-dec-inc?action=dec&id=${book.id}"><i
-											class="fas fa-minus-square"></i></a> ${book.qty} <a
-											class="btn btn-sm btn-incre"
-											href="cart-dec-inc?action=inc&id=${book.id}"><i
-											class="fas fa-plus-square"></i></a>
-									</div>
-								</form>
-							</td>
-							<td>$${book.total}</td>
-
-						</tr>
-					</c:forEach>
-
-				</tbody>
-			</table>
-			<div id="cartItem"></div>
-		</div>
-
-		<div id="orderSummary" class="mx-4 w-25">
-			<h4>Order Summary</h4>
-			<hr>
-			<div id="subTotal" class="d-flex justify-content-between">
-				<p>Sub Total</p>
-				<p>$102.75</p>
+	
+	<c:choose>
+		<c:when test="${booksInCart.isEmpty()}">
+			<div class="mt-4 d-flex justify-content-center">
+				<img id="cartEmptyImg" src="${pageContext.request.contextPath}/assets/images/emptyCart.png" alt=""/>
 			</div>
-			<div id="shipping" class="d-flex justify-content-between">
-				<p>Shipping</p>
-				<p>$7.00</p>
-			</div>
-			<div id="total" class="d-flex justify-content-between">
-				<strong><p>Total</p></strong>
-				<p>$110.00</p>
-			</div>
-			<form action="checkout" method="post">
-				<button class="w-100 btn btn-success" type="submit" value="checkOut">Checkout</button>
-			</form>
-		</div>
-	</section>
-
-
+		</c:when>
+		
+		<c:otherwise>
+			<section class="container my-4 h-auto d-flex justify-content-between">
+				<div id="cartBox" class="container-fluid w-75 mx-4">
+					<c:if test="${addBookSuccess != null}">
+						<p class="mt-2 text-center text-success">${addBookSuccess}</p>
+						<c:remove var="addBookSuccess" scope="session" />
+					</c:if>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Your Cart</th>
+								<th scope="col">Each</th>
+								<th scope="col">Qty</th>
+								<th scope="col">Total</th>
+							</tr>
+						</thead>
+						<tbody class="table-responsive">
+							<c:forEach var="book" items="${booksInCart}">
+								<tr>
+									<td class="d-flex w-auto">
+										<div id="cartBookImage">
+											<img
+												src="${pageContext.request.contextPath}/assets/images/books/${book.image}" />
+										</div>
+		
+										<div id="cartBookDetails">
+											<h4>${book.name}</h4>
+											<p id="cartBookDescription">${book.description}</p>
+											<p>${book.type}</p>
+										</div>
+									</td>
+									<td>$${book.salePrice}</td>
+									</form>
+									<td>
+										<form action="" method="get">
+											<input type="hidden" name="bookId" value="${book.id}" />
+											<div class="form-group d-flex justify-content-between">
+												<a class="btn btn-sm btn-decre"
+													href="cart-dec-inc?action=dec&id=${book.id}"><i
+													class="fas fa-minus-square"></i></a> ${book.qty} <a
+													class="btn btn-sm btn-incre"
+													href="cart-dec-inc?action=inc&id=${book.id}"><i
+													class="fas fa-plus-square"></i></a>
+											</div>
+										</form>
+									</td>
+									<td>$${book.total}</td>
+		
+								</tr>
+							</c:forEach>
+		
+						</tbody>
+					</table>
+					<div id="cartItem"></div>
+				</div>
+	
+				<div id="orderSummary" class="mx-4 w-25">
+					<h4>Your Cart Total Value</h4>
+					<hr>
+					<div id="subTotal" class="d-flex justify-content-between">
+						<p>Sub Total</p>
+						<p>$${sessionScope.cartTotal}</p>
+					</div>
+					<div id="shipping" class="d-flex justify-content-between">
+						<p>Shipping</p>
+						<p>Calculated at checkout</p>
+					</div>
+					<form action="checkout" method="post">
+						<button class="w-100 btn btn-success" type="submit" value="checkOut">Checkout</button>
+					</form>
+				</div>
+			</section>
+		</c:otherwise>
+	</c:choose>
+	
+	
 	<!-- Footer -->
 
 	<jsp:include page="footer.jsp" />

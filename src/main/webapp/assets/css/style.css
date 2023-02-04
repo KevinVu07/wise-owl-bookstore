@@ -373,6 +373,10 @@ footer .footer_main .tag i {
 
 /* Cart */
 
+#cartEmptyImg {
+	object-fit: contain;
+}
+
 #cartBookImage img {
 	width: 100px !important; 
 	height: auto !important;
