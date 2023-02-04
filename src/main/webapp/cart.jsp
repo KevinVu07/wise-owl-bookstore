@@ -75,17 +75,20 @@
 							<td>$${book.salePrice}</td>
 							</form>
 							<td>
-							<form action="" method="get">
-							<input type="hidden" name="bookId" value="${book.id}" />
-							<div class="form-group d-flex justify-content-between">
-								<a class="btn btn-sm btn-decre" href="cart-dec-inc?action=dec&id=${book.id}"><i class="fas fa-minus-square"></i></a>
-								${book.qty}
-								<a class="btn btn-sm btn-incre" href="cart-dec-inc?action=inc&id=${book.id}"><i class="fas fa-plus-square"></i></a>
-							</div>
-							</form>
+								<form action="" method="get">
+									<input type="hidden" name="bookId" value="${book.id}" />
+									<div class="form-group d-flex justify-content-between">
+										<a class="btn btn-sm btn-decre"
+											href="cart-dec-inc?action=dec&id=${book.id}"><i
+											class="fas fa-minus-square"></i></a> ${book.qty} <a
+											class="btn btn-sm btn-incre"
+											href="cart-dec-inc?action=inc&id=${book.id}"><i
+											class="fas fa-plus-square"></i></a>
+									</div>
+								</form>
 							</td>
 							<td>$${book.total}</td>
-							
+
 						</tr>
 					</c:forEach>
 
@@ -109,9 +112,10 @@
 				<strong><p>Total</p></strong>
 				<p>$110.00</p>
 			</div>
-			<button class="w-100 btn btn-success" type="submit" value="checkOut">Checkout</button>
+			<form action="checkout" method="post">
+				<button class="w-100 btn btn-success" type="submit" value="checkOut">Checkout</button>
+			</form>
 		</div>
-
 	</section>
 
 
