@@ -36,6 +36,11 @@ public class OrderSummaryController extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession(false);
+		
+		
+		
+		
+		
 		int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
 		
 		OrderDAO orderDAO = new OrderDAO();
@@ -57,7 +62,10 @@ public class OrderSummaryController extends HttpServlet {
 		
 		System.out.println("shipping fee is " + shippingFee);
 		
-		double total = subTotal + shippingFee;
+		double tax = subTotal * 0.1;
+		tax = (double)Math.round(tax * 100d) / 100d;
+		
+		double total = subTotal + shippingFee + tax;
 		
 		System.out.println("total fee is " + total);
 		
@@ -65,8 +73,9 @@ public class OrderSummaryController extends HttpServlet {
 		session.setAttribute("subTotal", subTotal);
 		session.setAttribute("shippingFee", shippingFee);
 		session.setAttribute("total", total);
+		session.setAttribute("tax", tax);
 		
-		RequestDispatcher dp = request.getRequestDispatcher("orders.jsp");
+		RequestDispatcher dp = request.getRequestDispatcher("checkout.jsp");
 		dp.forward(request, response);
 		
 	}

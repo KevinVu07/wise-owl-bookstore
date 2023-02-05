@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Order Summary Page</title>
+<title>Checkout Page</title>
 <!-- Bootstrap, CSS, and Fontawesome plug in -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/style.css" />
@@ -46,7 +46,7 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th scope="col">Your Orders</th>
+						<th scope="col">Books In Your Order</th>
 						<th scope="col">Qty</th>
 						<th scope="col">Total</th>
 						<th scope="col">Order Date</th>
@@ -87,13 +87,22 @@
 				<p>Shipping</p>
 				<p>$${sessionScope.shippingFee}</p>
 			</div>
+			<div id="tax" class="d-flex justify-content-between">
+				<p>Tax</p>
+				<p>$${sessionScope.tax}</p>
+			</div>
 			<div id="total" class="d-flex justify-content-between">
 				<strong><p>Total</p></strong>
 				<p>$${sessionScope.total}</p>
 			</div>
-			<form action="checkout" method="post">
-				<button class="w-100 btn btn-success" type="submit" value="checkOut">Checkout</button>
-			</form>
+			<div class="d-flex justify-content-between">
+				<form class="mx-2" action="" method="post">	
+					<button class="btn btn-success" type="submit" value="payment">Pay By Credit Card</button>
+				</form>
+				<form class="mx-2" action="authorize-payment" method="post">	
+					<button class="btn btn-primary" type="submit" value="payment">Pay with Paypal</button>
+				</form>
+			</div>
 		</div>
 	</section>
 
