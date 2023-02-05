@@ -17,8 +17,6 @@
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item"><a class="nav-link active"
 					aria-current="page" href="home">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Featured</a>
-				</li>
 				<li class="nav-item"><a class="nav-link" href="new-books">New
 						Books</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Old Books</a></li>
@@ -46,7 +44,7 @@
 								<ul class="dropdown-menu dropdown-menu-end">
 									<li><a class="dropdown-item" href="account-update">Account</a></li>
 									<li><a class="dropdown-item" href="cart">Cart</a></li>
-									<li><a class="dropdown-item" href="order-summary">Order Summary</a></li>
+									<li><a class="dropdown-item" href="order-summary">Checkout</a></li>
 									<li><hr class="dropdown-divider" /></li>
 									<li><a class="dropdown-item" href="logout">Logout</a></li>
 								</ul>

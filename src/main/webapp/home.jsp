@@ -119,29 +119,6 @@
 		</div>
 	</div>
 
-	<!-- Books -->
-	<div class="featured_books">
-		<h1>Featured Books</h1>
-		<div class="featured_book_box">
-			<div class="featured_book_card">
-				<div class="featured_book_img">
-					<img
-						src="${pageContext.request.contextPath}/assets/images/books/atomicHabits.png" />
-				</div>
-				<div class="featured_book_tag">
-					<h2>Atomic Habits</h2>
-					<p class="writer">James Clear</p>
-					<div class="categories">Self Help</div>
-					<p class="book_price">
-						$25.50<sub><del>$36.00</del></sub>
-					</p>
-					<a href="#" class="f_btn">Details</a>
-				</div>
-			</div>
-
-
-		</div>
-	</div>
 
 	<!-- Footer -->
 

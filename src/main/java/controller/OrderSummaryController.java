@@ -37,10 +37,6 @@ public class OrderSummaryController extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		
-		
-		
-		
-		
 		int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
 		
 		OrderDAO orderDAO = new OrderDAO();
@@ -53,21 +49,15 @@ public class OrderSummaryController extends HttpServlet {
 			subTotal = (double)Math.round(subTotal * 100d) / 100d; 
 		}
 		
-		System.out.println("subtotal is " + subTotal);
-		
 		double shippingFee = 7.50;
 		if (subTotal >= 50) {
 			shippingFee = 0;
 		}
 		
-		System.out.println("shipping fee is " + shippingFee);
-		
 		double tax = subTotal * 0.1;
 		tax = (double)Math.round(tax * 100d) / 100d;
 		
 		double total = subTotal + shippingFee + tax;
-		
-		System.out.println("total fee is " + total);
 		
 		session.setAttribute("orderList", orderList);
 		session.setAttribute("subTotal", subTotal);

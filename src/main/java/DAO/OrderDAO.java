@@ -101,12 +101,13 @@ public class OrderDAO {
 		Connection connection = MySqlDBConnector.makeConnection();
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		String sqlQuery = "SELECT o.id as order_id, o.user_id, o.book_id, b.name as book_name, b.image, o.book_price, o.order_qty, o.order_total, o.order_date"
-				+ " FROM `order` o JOIN `book` b ON b.id = o.book_id"
-				+ " WHERE user_id = " + userId;
+		String sqlQuery = "SELECT o.id as order_id, o.user_id, o.book_id, b.name as book_name, b.image, o.book_price, o.order_qty, o.order_total, o.order_date, o.order_reference"
+				+ " FROM `order` o JOIN `book` b ON b.id = o.book_id" 
+				+ " WHERE user_id = ? AND order_reference IS NULL"; 
 
 		try {
 			ps = connection.prepareStatement(sqlQuery);
+			ps.setInt(1, userId);
 			// RESULT SET / RESULT GRID
 			rs = ps.executeQuery();
 
@@ -121,7 +122,8 @@ public class OrderDAO {
 				double orderTotal = rs.getDouble("order_total");
 				String orderDate = rs.getString("order_date");
 
-				OrderListModel order = new OrderListModel(orderId, userId, bookId, bookName, bookImage, bookPrice, orderQty, orderTotal, orderDate);
+				OrderListModel order = new OrderListModel(orderId, userId, bookId, bookName, bookImage, bookPrice,
+						orderQty, orderTotal, orderDate);
 
 				orderList.add(order);
 			}
@@ -149,6 +151,39 @@ public class OrderDAO {
 		}
 
 		return orderList;
+	}
+
+	public void updateOrderReferenceByUserId(int userId, String orderRef) {
+
+		// make connection to MYSQL LOCALHOST, Schema book_store
+		Connection connection = MySqlDBConnector.makeConnection();
+		PreparedStatement ps = null;
+		String sqlQuery = "UPDATE `order` SET `order_reference` = ? WHERE (`user_id` = ? AND order_reference IS NULL)";
+
+		try {
+			ps = connection.prepareStatement(sqlQuery);
+			ps.setString(1, orderRef);
+			ps.setInt(2, userId);
+			// RESULT SET / RESULT GRID
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

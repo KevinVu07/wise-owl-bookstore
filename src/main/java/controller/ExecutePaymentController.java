@@ -8,6 +8,7 @@ import javax.servlet.http.*;
 import com.paypal.api.payments.*;
 import com.paypal.base.rest.PayPalRESTException;
 
+import DAO.OrderDAO;
 import payment.util.PaymentServices;
 /**
  * Servlet implementation class ExecutePaymentController
@@ -43,8 +44,14 @@ public class ExecutePaymentController extends HttpServlet {
 	        try {
 	            PaymentServices paymentServices = new PaymentServices();
 	            Payment payment = paymentServices.executePayment(paymentId, payerId);
-	            boolean orderSuccess = true;
-	             
+
+	            HttpSession session = request.getSession(false);
+				int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
+				String orderRef = "100054";
+				
+				OrderDAO orderDAO = new OrderDAO();
+				orderDAO.updateOrderReferenceByUserId(userId, orderRef);
+	            
 	            PayerInfo payerInfo = payment.getPayer().getPayerInfo();
 	            Transaction transaction = payment.getTransactions().get(0);
 	             
@@ -53,9 +60,6 @@ public class ExecutePaymentController extends HttpServlet {
 	 
 	            request.getRequestDispatcher("receipt.jsp").forward(request, response);
 	            
-	            HttpSession session = request.getSession();
-	            
-	            session.setAttribute("orderSuccess", orderSuccess);
 	             
 	        } catch (PayPalRESTException ex) {
 	            request.setAttribute("errorMessage", ex.getMessage());

@@ -9,7 +9,7 @@
 
 			<div class="tag">
 				<h1>Quick Link</h1>
-				<a href="home">Home</a> <a href="#">Featured</a> <a href="new-books">New
+				<a href="home">Home</a> <a href="new-books">New
 					Books</a> <a href="#">Old Books</a>
 			</div>
 

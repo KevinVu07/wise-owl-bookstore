@@ -91,13 +91,9 @@ public class PaymentServices {
         	 Item item = new Item();
              item.setCurrency("AUD");
              item.setName(book.getBookName());
-             System.out.println(item.getName());
              item.setPrice(String.valueOf(book.getBookPrice()));
-             System.out.println(item.getPrice());
              item.setTax(String.valueOf(Math.round(book.getOrderTotal() * 0.1 * 100d) / 100d));
-             System.out.println(item.getTax());
              item.setQuantity(String.valueOf(book.getOrderQty()));
-             System.out.println(item.getQuantity());
               
              items.add(item);
              itemList.setItems(items);
