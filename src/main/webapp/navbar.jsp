@@ -45,6 +45,7 @@
 									<li><a class="dropdown-item" href="account-update">Account</a></li>
 									<li><a class="dropdown-item" href="cart">Cart</a></li>
 									<li><a class="dropdown-item" href="order-summary">Checkout</a></li>
+									<li><a class="dropdown-item" href="order-history">Order History</a></li>
 									<li><hr class="dropdown-divider" /></li>
 									<li><a class="dropdown-item" href="logout">Logout</a></li>
 								</ul>

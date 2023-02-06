@@ -43,40 +43,62 @@
 
 	<section class="container my-4 h-auto d-flex justify-content-between">
 		<div class="container-fluid w-75 mx-4">
+
 			<table class="table">
 				<thead>
 					<tr>
-						<th scope="col">Your Orders</th>
-						<th scope="col">Qty</th>
+						<th scope="col">Your Past Orders</th>
 						<th scope="col">Total</th>
 						<th scope="col">Order Date</th>
 					</tr>
 				</thead>
 				<tbody class="table-responsive">
-					<c:forEach var="order" items="${orderList}">
-						<tr>
-							<td class="d-flex w-auto">
-								<div id="cartBookImage">
-									<img
-										src="${pageContext.request.contextPath}/assets/images/books/${order.bookImage}" />
-								</div>
+					<tr>
+						<td><a class="dropdown-toggle" href="#" id="dropdownMenuLink"
+							data-bs-toggle="dropdown" aria-expanded="false"> Order
+								Reference 100054 </a> <!--  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					    <li><a class="dropdown-item" href="#">Action</a></li>
+					    <li><a class="dropdown-item" href="#">Another action</a></li>
+					    <li><a class="dropdown-item" href="#">Something else here</a></li>
+					  </ul> -->
+							<div class="dropdown">
+								<table class="table dropdown-menu"
+									aria-labelledby="dropdownMenuLink">
+									<thead>
+										<tr>
+											<th scope="col">Your Books</th>
+											<th scope="col">Qty</th>
+											<th scope="col">Total</th>
+										</tr>
+									</thead>
+									<tbody class="table-responsive">
+										<c:forEach var="order" items="${orderList}">
+											<tr>
+												<td class="d-flex w-auto">
+													<div id="cartBookImage">
+														<img
+															src="${pageContext.request.contextPath}/assets/images/books/${order.bookImage}" />
+													</div>
 
-								<div id="cartBookDetails">
-									<h4>${order.bookName}</h4>
-								</div>
-							</td>
-							<td>${order.orderQty}</td>
-							<td>$${order.orderTotal}</td>
-							<td>${order.orderDate}</td>
-						</tr>
-					</c:forEach>
+													<div id="cartBookDetails">
+														<h4>${order.bookName}</h4>
+													</div>
+												</td>
+												<td>${order.orderQty}</td>
+												<td>$${order.orderTotal}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div></td>
+
+						<td>$100</td>
+						<td>5/2/2023</td>
+					</tr>
 
 				</tbody>
 			</table>
-			<div id="cartItem"></div>
 		</div>
-
-		
 	</section>
 
 

@@ -152,6 +152,67 @@ public class OrderDAO {
 
 		return orderList;
 	}
+	
+	public List<OrderListModel> getAllOrderByUserIdAndOrderRef(int userId, String orderRef) {
+		List<OrderListModel> orderList = new ArrayList<OrderListModel>();
+
+		// make connection to MYSQL LOCALHOST, Schema book_store
+		Connection connection = MySqlDBConnector.makeConnection();
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		String sqlQuery = "SELECT o.id as order_id, o.user_id, o.book_id, b.name as book_name, b.image, o.book_price, o.order_qty, o.order_total, o.order_date, o.order_reference"
+				+ " FROM `order` o JOIN `book` b ON b.id = o.book_id" 
+				+ " WHERE user_id = ? AND order_reference = ?"; 
+
+		try {
+			ps = connection.prepareStatement(sqlQuery);
+			ps.setInt(1, userId);
+			ps.setString(2, "100054");
+			// RESULT SET / RESULT GRID
+			rs = ps.executeQuery();
+
+			// LOOP EACH ROW -> get value of all columns
+			while (rs.next() == true) {
+				int orderId = rs.getInt("order_id");
+				int bookId = rs.getInt("book_id");
+				String bookName = rs.getString("book_name");
+				String bookImage = rs.getString("image");
+				double bookPrice = rs.getDouble("book_price");
+				int orderQty = rs.getInt("order_qty");
+				double orderTotal = rs.getDouble("order_total");
+				String orderDate = rs.getString("order_date");
+
+				OrderListModel order = new OrderListModel(orderId, userId, bookId, bookName, bookImage, bookPrice,
+						orderQty, orderTotal, orderDate);
+
+				orderList.add(order);
+			}
+			;
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return orderList;
+	}
+
 
 	public void updateOrderReferenceByUserId(int userId, String orderRef) {
 
