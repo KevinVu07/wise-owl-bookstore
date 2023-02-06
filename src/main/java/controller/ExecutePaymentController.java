@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -47,10 +50,14 @@ public class ExecutePaymentController extends HttpServlet {
 
 	            HttpSession session = request.getSession(false);
 				int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
-				String orderRef = "100054";
+				String orderRef = String.valueOf(Math.round(Math.random() * 100000));
+				
+				System.out.println("random order ref number is " + orderRef);
 				
 				OrderDAO orderDAO = new OrderDAO();
 				orderDAO.updateOrderReferenceByUserId(userId, orderRef);
+		
+				
 	            
 	            PayerInfo payerInfo = payment.getPayer().getPayerInfo();
 	            Transaction transaction = payment.getTransactions().get(0);

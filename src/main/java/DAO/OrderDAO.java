@@ -167,7 +167,7 @@ public class OrderDAO {
 		try {
 			ps = connection.prepareStatement(sqlQuery);
 			ps.setInt(1, userId);
-			ps.setString(2, "100054");
+			ps.setString(2, orderRef);
 			// RESULT SET / RESULT GRID
 			rs = ps.executeQuery();
 
@@ -246,5 +246,58 @@ public class OrderDAO {
 			}
 		}
 	}
+	
+	public List<String> getOrderRefListByUserId(int userId) {
+		
+		List<String> orderRefList = new ArrayList<String>();
+		
+		
+		// make connection to MYSQL LOCALHOST, Schema wise-owl-bookstore
+		Connection connection = MySqlDBConnector.makeConnection();
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		String sqlQuery = "SELECT COUNT(o.user_id), o.order_reference"
+				+ " FROM `order` as o" 
+				+ " WHERE user_id = ? AND order_reference IS NOT NULL"
+				+ " GROUP BY order_reference";
+
+		try {
+			ps = connection.prepareStatement(sqlQuery);
+			ps.setInt(1, userId);
+			// RESULT SET / RESULT GRID
+			rs = ps.executeQuery();
+
+			// LOOP EACH ROW -> get value of all columns
+			while (rs.next() == true) {
+				String orderRef = rs.getString("order_reference");
+				orderRefList.add(orderRef);
+			}
+			;
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return orderRefList;
+	}
+	
+
 
 }

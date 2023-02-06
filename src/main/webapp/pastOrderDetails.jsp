@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Order History</title>
+<title>Past Order Details</title>
 <!-- Bootstrap, CSS, and Fontawesome plug in -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/style.css" />
@@ -43,29 +43,41 @@
 
 	<section class="container my-4 h-auto d-flex justify-content-between">
 		<div class="container-fluid w-100 mx-4">
+			<h2>Your order - reference ${orderRef}</h2>
+			<hr>
+			<br>
 
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">Your Past Orders</th>
-						<th scope="col">Total</th>
-						<th scope="col">Order Date</th>
-					</tr>
-				</thead>
-				<tbody class="table-responsive">
-					<c:forEach var="orderRef" items="${orderRefList}">
+			<div class="container">
+				<table class="table">
+					<thead>
 						<tr>
-							<td><a href="past-order-details?orderRef=${orderRef}">
-									Order Reference ${orderRef} </a></td>
-							<td>$100</td>
-							<td>5/2/2023</td>
+							<th scope="col">Your Books</th>
+							<th scope="col">Qty</th>
+							<th scope="col">Total</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody class="table-responsive">
+						<c:forEach var="order" items="${orderList}">
+							<tr>
+								<td class="d-flex w-auto">
+									<div id="cartBookImage">
+										<img
+											src="${pageContext.request.contextPath}/assets/images/books/${order.bookImage}" />
+									</div>
+
+									<div id="cartBookDetails">
+										<h4>${order.bookName}</h4>
+									</div>
+								</td>
+								<td>${order.orderQty}</td>
+								<td>$${order.orderTotal}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</section>
-
 
 	<!-- Footer -->
 

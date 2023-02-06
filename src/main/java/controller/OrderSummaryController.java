@@ -37,9 +37,11 @@ public class OrderSummaryController extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		
+		
 		int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
 		
 		OrderDAO orderDAO = new OrderDAO();
+		
 		
 		List<OrderListModel> orderList = orderDAO.getAllOrderByUserId(userId);
 		

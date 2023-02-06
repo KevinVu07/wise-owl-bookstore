@@ -15,16 +15,16 @@ import DAO.OrderDAO;
 import model.OrderListModel;
 
 /**
- * Servlet implementation class OrderHistoryController
+ * Servlet implementation class PastOrderDetailsController
  */
-@WebServlet("/order-history")
-public class OrderHistoryController extends HttpServlet {
+@WebServlet("/past-order-details")
+public class PastOrderDetailsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public OrderHistoryController() {
+	public PastOrderDetailsController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -41,16 +41,15 @@ public class OrderHistoryController extends HttpServlet {
 
 		int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
 
+		String orderRef = request.getParameter("orderRef");
+
 		OrderDAO orderDAO = new OrderDAO();
-		
-		List<String> orderRefList = orderDAO.getOrderRefListByUserId(userId);
-		session.setAttribute("orderRefList", orderRefList);
-		System.out.println("Here is list of order ref");
-		
+		List<OrderListModel> orderList = orderDAO.getAllOrderByUserIdAndOrderRef(userId, orderRef);
+		session.setAttribute("orderRef", orderRef);
+		session.setAttribute("orderList", orderList);
 
-		RequestDispatcher dp = request.getRequestDispatcher("orderHistory.jsp");
+		RequestDispatcher dp = request.getRequestDispatcher("pastOrderDetails.jsp");
 		dp.forward(request, response);
-
 	}
 
 	/**
