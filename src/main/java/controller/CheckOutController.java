@@ -59,6 +59,7 @@ public class CheckOutController extends HttpServlet {
 		for (BookInCartModel book : booksInCart) {
 			int bookId = book.getId();
 			int orderQty = book.getQty();
+			
 			double bookPrice = book.getSalePrice();
 			double orderTotal = bookPrice * orderQty;
 
@@ -75,7 +76,7 @@ public class CheckOutController extends HttpServlet {
 
 			ResultSet rs = null;
 			PreparedStatement ps = null;
-			String sqlQuery = "SELECT * FROM `order` WHERE user_id = ? AND book_id = ?";
+			String sqlQuery = "SELECT * FROM `order` WHERE (user_id = ? AND book_id = ? AND order_reference IS NULL)";
 			try {
 				ps = connection.prepareStatement(sqlQuery);
 				ps.setInt(1, userId);
@@ -102,7 +103,7 @@ public class CheckOutController extends HttpServlet {
 					int newOrderQty = currentOrderQty + order.getOrderQty();
 					double newOrderTotal = order.getBookPrice() * newOrderQty;
 
-					sqlQuery = "UPDATE `order` SET `order_qty` = ?, `order_total` = ? WHERE (`book_id` = ? AND `user_id` = ?)";
+					sqlQuery = "UPDATE `order` SET `order_qty` = ?, `order_total` = ? WHERE (`book_id` = ? AND `user_id` = ? AND order_reference IS NULL)";
 
 					ps = connection.prepareStatement(sqlQuery);
 					ps.setInt(1, newOrderQty);

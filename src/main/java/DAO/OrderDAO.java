@@ -51,7 +51,7 @@ public class OrderDAO {
 		Connection connection = MySqlDBConnector.makeConnection();
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		String sqlQuery = "SELECT * FROM `order` WHERE book_id = ? AND user_id = ?";
+		String sqlQuery = "SELECT * FROM `order` WHERE (book_id = ? AND user_id = ? AND order_reference IS NULL)";
 		try {
 			ps = connection.prepareStatement(sqlQuery);
 			ps.setInt(1, bookId);

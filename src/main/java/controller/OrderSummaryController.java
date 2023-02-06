@@ -52,7 +52,7 @@ public class OrderSummaryController extends HttpServlet {
 		}
 		
 		double shippingFee = 7.50;
-		if (subTotal >= 50) {
+		if (subTotal >= 50 || subTotal == 0) {
 			shippingFee = 0;
 		}
 		

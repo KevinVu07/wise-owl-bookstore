@@ -49,38 +49,40 @@ public class OrderNowController extends HttpServlet {
 			HttpSession session = request.getSession(false);
 			int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
 			int bookId = Integer.parseInt(request.getParameter("bookId"));
-			int orderQty = 1;
-			double bookPrice = Double.parseDouble(request.getParameter("bookPrice"));
-			double orderTotal = bookPrice * orderQty;
-			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-			Date date = new Date();
-
-			OrderModel order = new OrderModel();
-
-			order.setUserId(userId);
-			order.setBookId(bookId);
-			order.setBookPrice(bookPrice);
-			order.setOrderQty(orderQty);
-			order.setOrderTotal(orderTotal);
-			order.setOrderDate(formatter.format(date));
-
+//			int orderQty = 1;
+//			double bookPrice = Double.parseDouble(request.getParameter("bookPrice"));
+//			double orderTotal = bookPrice * orderQty;
+//			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+//			Date date = new Date();
+//
+//			OrderModel order = new OrderModel();
+//
+//			order.setUserId(userId);
+//			order.setBookId(bookId);
+//			order.setBookPrice(bookPrice);
+//			order.setOrderQty(orderQty);
+//			order.setOrderTotal(orderTotal);
+//			order.setOrderDate(formatter.format(date));
+//
 			OrderDAO orderDAO = new OrderDAO();
+			OrderModel order = orderDAO.getOrderByBookIdAndUserId(bookId, userId);
 
-			Connection connection = MySqlDBConnector.makeConnection();
-
-			ResultSet rs = null;
-			PreparedStatement ps = null;
-			String sqlQuery = "SELECT * FROM `order` WHERE user_id = ? AND book_id = ?";
-
-			try {
-				ps = connection.prepareStatement(sqlQuery);
-				ps.setInt(1, userId);
-				ps.setInt(2, bookId);
-				rs = ps.executeQuery();
+		
+//			String sqlQuery = "SELECT * FROM `order` WHERE (user_id = ? AND book_id = ? AND order_reference IS NULL)";
+//
+//			try {
+//				ps = connection.prepareStatement(sqlQuery);
+//				ps.setInt(1, userId);
+//				ps.setInt(2, bookId);
+//				rs = ps.executeQuery();
+			
+			
+			
 
 				// if this book is not inside the order list yet
-				if (!rs.next()) {
-
+//				if (!rs.next()) {
+				
+			if (order == null) {
 					boolean result = orderDAO.insertOrder(order);
 
 					if (result) {
@@ -95,7 +97,9 @@ public class OrderNowController extends HttpServlet {
 					int newOrderQty = order.getOrderQty() + 1;
 					double newOrderTotal = order.getBookPrice() * newOrderQty;
 
-					sqlQuery = "UPDATE `order` SET `order_qty` = ?, `order_total` = ? WHERE (`book_id` = ? AND `user_id` = ?)";
+					Connection connection = MySqlDBConnector.makeConnection();
+					PreparedStatement ps = null;
+					String sqlQuery = "UPDATE `order` SET `order_qty` = ?, `order_total` = ? WHERE (`book_id` = ? AND `user_id` = ? AND order_reference IS NULL)";
 					
 					try {
 						ps = connection.prepareStatement(sqlQuery);
@@ -109,9 +113,6 @@ public class OrderNowController extends HttpServlet {
 						e.printStackTrace();
 					} finally {
 						try {
-							if (rs != null) {
-								rs.close();
-							}
 							if (ps != null) {
 								ps.close();
 							}
@@ -126,28 +127,8 @@ public class OrderNowController extends HttpServlet {
 					}	
 					
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					if (rs != null) {
-						rs.close();
-					}
-					if (ps != null) {
-						ps.close();
-					}
-					if (connection != null) {
-						connection.close();
-					}
-
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 			response.sendRedirect("order-summary");
-		} 
-	
+			} 
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
