@@ -1,4 +1,4 @@
-package controller;
+package controller.admin;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ import entity.User;
 /**
  * Servlet implementation class LoginController
  */
-@WebServlet("/login")
+@WebServlet("/admin/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

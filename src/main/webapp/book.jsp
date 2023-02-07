@@ -1,3 +1,5 @@
+<%@page import="db.util.MySqlDBConnector"%>
+<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
@@ -9,7 +11,8 @@
 <title>Book Details Page</title>
 
 <!-- Bootstrap, CSS, and Fontawesome plug in -->
-<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/style.css" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -20,18 +23,21 @@
 
 <!-- Favicon plugin -->
 <link rel="apple-touch-icon" sizes="180x180"
-	href="assets/images/favicon/apple-touch-icon.png" />
+	href="${pageContext.request.contextPath}/assets/images/favicon/apple-touch-icon.png" />
 <link rel="icon" type="image/png" sizes="32x32"
-	href="assets/images/favicon/favicon-32x32.png" />
+	href="${pageContext.request.contextPath}/assets/images/favicon/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16"
-	href="assets/images/favicon/favicon-16x16.png" />
-<link rel="manifest" href="assets/images/favicon/site.webmanifest" />
-<link rel="mask-icon" href="assets/images/favicon/safari-pinned-tab.svg"
+	href="${pageContext.request.contextPath}/assets/images/favicon/favicon-16x16.png" />
+<link rel="manifest"
+	href="${pageContext.request.contextPath}/assets/images/favicon/site.webmanifest" />
+<link rel="mask-icon"
+	href="${pageContext.request.contextPath}/assets/images/favicon/safari-pinned-tab.svg"
 	color="#5bbad5" />
-<link rel="shortcut icon" href="assets/images/favicon/favicon.ico" />
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/assets/images/favicon/favicon.ico" />
 <meta name="msapplication-TileColor" content="#da532c" />
 <meta name="msapplication-config"
-	content="assets/images/favicon/browserconfig.xml" />
+	content="${pageContext.request.contextPath}/assets/images/favicon/browserconfig.xml" />
 <meta name="theme-color" content="#ffffff" />
 </head>
 <body>

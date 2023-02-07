@@ -10,9 +10,10 @@ public class User {
 	private String city;
 	private String state;
 	private String postcode;
+	private int admin;
 
 	public User(int id, String firstName, String lastName, String email, String password, String address, String city, String state,
-			String postcode) {
+			String postcode, int admin) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -23,12 +24,25 @@ public class User {
 		this.city = city;
 		this.state = state;
 		this.postcode = postcode;
+		this.admin = admin;
 	}
 
 
 
 	public User() {
 		super();
+	}
+
+	
+
+	public int getAdmin() {
+		return admin;
+	}
+
+
+
+	public void setAdmin(int admin) {
+		this.admin = admin;
 	}
 
 

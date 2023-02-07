@@ -85,8 +85,9 @@ public class UserDAOLogin {
 				String city = rs.getString("city");
 				String state = rs.getString("state");
 				String postcode = rs.getString("postcode");
+				int admin = rs.getInt("admin");
 				
-				user = new User(id, firstName, lastName, email, password, address, city, state, postcode);
+				user = new User(id, firstName, lastName, email, password, address, city, state, postcode, admin);
 				
 			}
 			;

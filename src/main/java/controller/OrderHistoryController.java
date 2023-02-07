@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import DAO.OrderDAO;
 import model.OrderListModel;
+import model.OrderModel;
 
 /**
  * Servlet implementation class OrderHistoryController
@@ -45,8 +46,14 @@ public class OrderHistoryController extends HttpServlet {
 		
 		List<String> orderRefList = orderDAO.getOrderRefListByUserId(userId);
 		session.setAttribute("orderRefList", orderRefList);
-		System.out.println("Here is list of order ref");
 		
+//		for (String orderRef : orderRefList) {
+//			double total = 0;
+//			List<OrderListModel> orderList = orderDAO.getAllOrderByUserIdAndOrderRef(userId, orderRef);
+//			for (OrderListModel order : orderList) {
+//				total = total
+//			}
+//		}
 
 		RequestDispatcher dp = request.getRequestDispatcher("orderHistory.jsp");
 		dp.forward(request, response);

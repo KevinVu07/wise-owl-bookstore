@@ -45,29 +45,15 @@ public class OrderNowController extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		HttpSession session = request.getSession(false);
+		int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
+		int bookId = Integer.parseInt(request.getParameter("bookId"));
 		
-			HttpSession session = request.getSession(false);
-			int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
-			int bookId = Integer.parseInt(request.getParameter("bookId"));
-//			int orderQty = 1;
-//			double bookPrice = Double.parseDouble(request.getParameter("bookPrice"));
-//			double orderTotal = bookPrice * orderQty;
-//			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-//			Date date = new Date();
-//
-//			OrderModel order = new OrderModel();
-//
-//			order.setUserId(userId);
-//			order.setBookId(bookId);
-//			order.setBookPrice(bookPrice);
-//			order.setOrderQty(orderQty);
-//			order.setOrderTotal(orderTotal);
-//			order.setOrderDate(formatter.format(date));
-//
-			OrderDAO orderDAO = new OrderDAO();
-			OrderModel order = orderDAO.getOrderByBookIdAndUserId(bookId, userId);
 
-		
+		OrderDAO orderDAO = new OrderDAO();
+		OrderModel order = orderDAO.getOrderByBookIdAndUserId(bookId, userId);
+
+		System.out.println(order == null);
 //			String sqlQuery = "SELECT * FROM `order` WHERE (user_id = ? AND book_id = ? AND order_reference IS NULL)";
 //
 //			try {
@@ -75,60 +61,71 @@ public class OrderNowController extends HttpServlet {
 //				ps.setInt(1, userId);
 //				ps.setInt(2, bookId);
 //				rs = ps.executeQuery();
-			
-			
-			
 
-				// if this book is not inside the order list yet
+		// if this book is not inside the order list yet
 //				if (!rs.next()) {
-				
-			if (order == null) {
-					boolean result = orderDAO.insertOrder(order);
 
-					if (result) {
-						System.out.println("this book has been added to order list...");
-						
-					} else {
-						System.out.println("order failed...");
+		if (order == null) {
+			int orderQty = 1;
+			double bookPrice = Double.parseDouble(request.getParameter("bookPrice"));
+			double orderTotal = bookPrice * orderQty;
+			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+			Date date = new Date();
+
+			OrderModel newOrder = new OrderModel();
+
+			newOrder.setUserId(userId);
+			newOrder.setBookId(bookId);
+			newOrder.setBookPrice(bookPrice);
+			newOrder.setOrderQty(orderQty);
+			newOrder.setOrderTotal(orderTotal);
+			newOrder.setOrderDate(formatter.format(date));
+			boolean result = orderDAO.insertOrder(newOrder);
+
+			if (result) {
+				System.out.println("this book has been added to order list...");
+
+			} else {
+				System.out.println("order failed...");
+			}
+
+		} else {
+
+			int newOrderQty = order.getOrderQty() + 1;
+			double newOrderTotal = order.getBookPrice() * newOrderQty;
+
+			Connection connection = MySqlDBConnector.makeConnection();
+			PreparedStatement ps = null;
+			String sqlQuery = "UPDATE `order` SET `order_qty` = ?, `order_total` = ? WHERE (`book_id` = ? AND `user_id` = ? AND order_reference IS NULL)";
+
+			try {
+				ps = connection.prepareStatement(sqlQuery);
+				ps.setInt(1, newOrderQty);
+				ps.setDouble(2, newOrderTotal);
+				ps.setInt(3, bookId);
+				ps.setInt(4, userId);
+
+				ps.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (ps != null) {
+						ps.close();
+					}
+					if (connection != null) {
+						connection.close();
 					}
 
-				} else {
-
-					int newOrderQty = order.getOrderQty() + 1;
-					double newOrderTotal = order.getBookPrice() * newOrderQty;
-
-					Connection connection = MySqlDBConnector.makeConnection();
-					PreparedStatement ps = null;
-					String sqlQuery = "UPDATE `order` SET `order_qty` = ?, `order_total` = ? WHERE (`book_id` = ? AND `user_id` = ? AND order_reference IS NULL)";
-					
-					try {
-						ps = connection.prepareStatement(sqlQuery);
-						ps.setInt(1, newOrderQty);
-						ps.setDouble(2, newOrderTotal);
-						ps.setInt(3, bookId);
-						ps.setInt(4, userId);
-
-						ps.executeUpdate();
-					} catch (Exception e) {
-						e.printStackTrace();
-					} finally {
-						try {
-							if (ps != null) {
-								ps.close();
-							}
-							if (connection != null) {
-								connection.close();
-							}
-
-						} catch (SQLException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}	
-					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			response.sendRedirect("order-summary");
-			} 
+			}
+
+		}
+		response.sendRedirect("order-summary");
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse

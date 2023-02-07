@@ -31,7 +31,7 @@ public class HomeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		// BOOK
 		// create new object bookDAO from class BookDAO -> so it can call function getAll() from BookDAO
 //		BookDAO bookDAO = new BookDAO();

@@ -20,7 +20,9 @@
 				<li class="nav-item"><a class="nav-link" href="new-books">New
 						Books</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Old Books</a></li>
-				<li class="nav-item"><a class="nav-link" href="add-new-book">Add New Book</a></li>
+				<c:if test="${admin == 1}">
+					<li class="nav-item"><a class="nav-link" href="add-new-book">Add New Book</a></li>
+				</c:if>
 			</ul>
 			<div>
 				<c:choose>

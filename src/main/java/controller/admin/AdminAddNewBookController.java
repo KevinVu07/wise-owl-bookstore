@@ -1,4 +1,4 @@
-package controller;
+package controller.admin;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,15 +22,15 @@ import model.BookDetailsModel;
 /**
  * Servlet implementation class BookBOController
  */
-@WebServlet("/add-new-book")
+@WebServlet("/admin/add-new-book")
 @MultipartConfig
-public class AddNewBookController extends HttpServlet {
+public class AdminAddNewBookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddNewBookController() {
+    public AdminAddNewBookController() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -31,6 +31,7 @@ public class LogoutController extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(false);
+		session.removeAttribute("email");
 		session.removeAttribute("firstName");
 //		session.removeAttribute("email");
 		response.sendRedirect("login.jsp");
