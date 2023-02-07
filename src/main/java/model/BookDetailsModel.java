@@ -14,21 +14,18 @@ public class BookDetailsModel {
 	private String ISBN;
 	private double rrp;
 	private double salePrice;
-	private double rating;
 	private int authorId;
 	private String authorName;
 	private String image;
-	
-	
-	
+
 	public BookDetailsModel() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public BookDetailsModel(int id, String name, String description, int categoryId, String categoryName, String type,
-			int editionNumber, Date publishedDate, String iSBN, double rrp, double salePrice, double rating,
-			int authorId, String authorName, String image) {
+			int editionNumber, Date publishedDate, String iSBN, double rrp, double salePrice, int authorId,
+			String authorName, String image) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -41,7 +38,6 @@ public class BookDetailsModel {
 		ISBN = iSBN;
 		this.rrp = rrp;
 		this.salePrice = salePrice;
-		this.rating = rating;
 		this.authorId = authorId;
 		this.authorName = authorName;
 		this.image = image;
@@ -135,13 +131,6 @@ public class BookDetailsModel {
 		this.salePrice = salePrice;
 	}
 
-	public double getRating() {
-		return rating;
-	}
-
-	public void setRating(double rating) {
-		this.rating = rating;
-	}
 
 	public int getAuthorId() {
 		return authorId;
@@ -167,8 +156,4 @@ public class BookDetailsModel {
 		this.authorName = authorName;
 	}
 
-	
-	
-	
-	
 }

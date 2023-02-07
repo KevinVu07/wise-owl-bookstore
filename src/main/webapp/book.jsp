@@ -55,14 +55,6 @@
 					<h2>${book.name}</h2>
 					<p class="writer my-2">by ${book.authorName}</p>
 					<p class="categories my-2">Category: ${book.categoryName}</p>
-					<div class="d-flex">
-						<div>
-							<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star-half-stroke"></i>
-						</div>
-						<p class="mx-2">(10 reviews)</p>
-					</div>
 					<p class="mb-0">
 						<span id="product_version_title"> ${book.type} </span> <br /> <span
 							class="label">Edition Number:</span> ${book.editionNumber}<br />

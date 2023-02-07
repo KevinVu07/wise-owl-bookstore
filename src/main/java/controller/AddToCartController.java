@@ -46,6 +46,7 @@ public class AddToCartController extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		// add book to cart
+		
 		HttpSession session = request.getSession(false);
 		int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
 
