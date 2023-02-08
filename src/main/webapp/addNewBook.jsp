@@ -42,7 +42,7 @@
 </head>
 <body>
 	<section>
-		<jsp:include page="${pageContext.request.contextPath}/navbar.jsp" />
+		<jsp:include page="navbar.jsp" />
 	</section>
 	
 	<section>
@@ -67,7 +67,7 @@
 								<c:remove var="bookAddFail" scope="session" />
 							</c:if>
 							
-							<form action="${pageContext.request.contextPath}/admin/add-new-book" method="post" enctype="multipart/form-data">
+							<form action="${pageContext.request.contextPath}/admin-add-new-book" method="post" enctype="multipart/form-data">
 								<div class="form-group my-1">
 									<label for="bookName">Book Name</label>
 									<input name="bookName" type="text" class="form-control" id="bookName">
@@ -133,7 +133,7 @@
 	</section>
 	
 	
-	<jsp:include page="${pageContext.request.contextPath}/footer.jsp" />
+	<jsp:include page="footer.jsp" />
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

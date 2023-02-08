@@ -44,6 +44,7 @@
 	<section class="container my-4 h-auto d-flex justify-content-between">
 		<div class="container-fluid w-100 mx-4">
 			<h2>Your order - reference ${orderRef}</h2>
+			<h4>Order Total: $${orderTotal}</h4>
 			<hr>
 			<br>
 

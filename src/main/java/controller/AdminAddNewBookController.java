@@ -1,4 +1,4 @@
-package controller.admin;
+package controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +22,7 @@ import model.BookDetailsModel;
 /**
  * Servlet implementation class BookBOController
  */
-@WebServlet("/admin/add-new-book")
+@WebServlet("/admin-add-new-book")
 @MultipartConfig
 public class AdminAddNewBookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -40,6 +40,7 @@ public class AdminAddNewBookController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("I am here at add new book servlet");
 		RequestDispatcher dp = request.getRequestDispatcher("addNewBook.jsp");
 		dp.forward(request, response);
 	}

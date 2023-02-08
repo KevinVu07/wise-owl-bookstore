@@ -45,8 +45,14 @@ public class PastOrderDetailsController extends HttpServlet {
 
 		OrderDAO orderDAO = new OrderDAO();
 		List<OrderListModel> orderList = orderDAO.getAllOrderByUserIdAndOrderRef(userId, orderRef);
+		double orderTotal = 0;
+		for (OrderListModel order : orderList) {
+			orderTotal = orderTotal + order.getOrderTotal();
+		}
+		session.setAttribute("orderTotal", orderTotal);
 		session.setAttribute("orderRef", orderRef);
 		session.setAttribute("orderList", orderList);
+		
 
 		RequestDispatcher dp = request.getRequestDispatcher("pastOrderDetails.jsp");
 		dp.forward(request, response);

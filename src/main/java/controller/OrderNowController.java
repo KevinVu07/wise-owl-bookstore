@@ -40,7 +40,6 @@ public class OrderNowController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	@SuppressWarnings("resource")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -96,7 +95,7 @@ public class OrderNowController extends HttpServlet {
 
 			Connection connection = MySqlDBConnector.makeConnection();
 			PreparedStatement ps = null;
-			String sqlQuery = "UPDATE `order` SET `order_qty` = ?, `order_total` = ? WHERE (`book_id` = ? AND `user_id` = ? AND order_reference IS NULL)";
+			String sqlQuery = "UPDATE `order_items` SET `order_qty` = ?, `order_total` = ? WHERE (`book_id` = ? AND `user_id` = ? AND order_reference IS NULL)";
 
 			try {
 				ps = connection.prepareStatement(sqlQuery);

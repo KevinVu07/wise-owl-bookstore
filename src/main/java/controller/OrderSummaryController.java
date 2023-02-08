@@ -64,8 +64,8 @@ public class OrderSummaryController extends HttpServlet {
 		session.setAttribute("orderList", orderList);
 		session.setAttribute("subTotal", subTotal);
 		session.setAttribute("shippingFee", shippingFee);
-		session.setAttribute("total", total);
-		session.setAttribute("tax", tax);
+		session.setAttribute("total", String.format("%.2f",total));
+		session.setAttribute("tax", String.format("%.2f",tax));
 		
 		RequestDispatcher dp = request.getRequestDispatcher("checkout.jsp");
 		dp.forward(request, response);

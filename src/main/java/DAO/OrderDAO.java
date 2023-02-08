@@ -5,11 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import db.util.MySqlDBConnector;
-import model.BookInCartModel;
 import model.OrderListModel;
 import model.OrderModel;
 
@@ -21,7 +19,7 @@ public class OrderDAO {
 
 		Connection connection = MySqlDBConnector.makeConnection();
 		PreparedStatement ps = null;
-		String sqlQuery = "INSERT INTO `order` (user_id, book_id, order_qty, book_price, order_total, order_date) VALUES (?, ?, ?, ?, ?, ?)";
+		String sqlQuery = "INSERT INTO `order_items` (user_id, book_id, order_qty, book_price, order_total, order_date) VALUES (?, ?, ?, ?, ?, ?)";
 
 		try {
 			ps = connection.prepareStatement(sqlQuery);
@@ -51,7 +49,7 @@ public class OrderDAO {
 		Connection connection = MySqlDBConnector.makeConnection();
 		ResultSet rs = null;
 		PreparedStatement ps = null;
-		String sqlQuery = "SELECT * FROM `order` WHERE (book_id = ? AND user_id = ? AND order_reference IS NULL)";
+		String sqlQuery = "SELECT * FROM `order_items` WHERE (book_id = ? AND user_id = ? AND order_reference IS NULL)";
 		try {
 			ps = connection.prepareStatement(sqlQuery);
 			ps.setInt(1, bookId);
@@ -102,7 +100,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sqlQuery = "SELECT o.id as order_id, o.user_id, o.book_id, b.name as book_name, b.image, o.book_price, o.order_qty, o.order_total, o.order_date, o.order_reference"
-				+ " FROM `order` o JOIN `book` b ON b.id = o.book_id" 
+				+ " FROM `order_items` o JOIN `book` b ON b.id = o.book_id" 
 				+ " WHERE user_id = ? AND order_reference IS NULL"; 
 
 		try {
@@ -161,7 +159,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sqlQuery = "SELECT o.id as order_id, o.user_id, o.book_id, b.name as book_name, b.image, o.book_price, o.order_qty, o.order_total, o.order_date, o.order_reference"
-				+ " FROM `order` o JOIN `book` b ON b.id = o.book_id" 
+				+ " FROM `order_items` o JOIN `book` b ON b.id = o.book_id" 
 				+ " WHERE user_id = ? AND order_reference = ?"; 
 
 		try {
@@ -219,7 +217,7 @@ public class OrderDAO {
 		// make connection to MYSQL LOCALHOST, Schema book_store
 		Connection connection = MySqlDBConnector.makeConnection();
 		PreparedStatement ps = null;
-		String sqlQuery = "UPDATE `order` SET `order_reference` = ? WHERE (`user_id` = ? AND order_reference IS NULL)";
+		String sqlQuery = "UPDATE `order_items` SET `order_reference` = ? WHERE (`user_id` = ? AND order_reference IS NULL)";
 
 		try {
 			ps = connection.prepareStatement(sqlQuery);
@@ -257,7 +255,7 @@ public class OrderDAO {
 		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sqlQuery = "SELECT COUNT(o.user_id), o.order_reference"
-				+ " FROM `order` as o" 
+				+ " FROM `order_items` as o" 
 				+ " WHERE user_id = ? AND order_reference IS NOT NULL"
 				+ " GROUP BY order_reference";
 
