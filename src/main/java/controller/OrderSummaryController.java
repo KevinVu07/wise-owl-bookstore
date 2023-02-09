@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
-import DAO.OrderDAO;
-import model.OrderListModel;
+import DAO.OrderItemDAO;
+import model.OrderItemModel;
 
 /**
  * Servlet implementation class OrderSummaryController
@@ -40,13 +40,13 @@ public class OrderSummaryController extends HttpServlet {
 		
 		int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
 		
-		OrderDAO orderDAO = new OrderDAO();
+		OrderItemDAO orderItemDAO = new OrderItemDAO();
 		
 		
-		List<OrderListModel> orderList = orderDAO.getAllOrderByUserId(userId);
+		List<OrderItemModel> orderItemList = orderItemDAO.getAllOrderByUserId(userId);
 		
 		double subTotal = 0;
-		for (OrderListModel order : orderList) {
+		for (OrderItemModel order : orderItemList) {
 			subTotal = subTotal + order.getOrderTotal();
 			subTotal = (double)Math.round(subTotal * 100d) / 100d; 
 		}
@@ -61,7 +61,7 @@ public class OrderSummaryController extends HttpServlet {
 		
 		double total = subTotal + shippingFee + tax;
 		
-		session.setAttribute("orderList", orderList);
+		session.setAttribute("orderItemList", orderItemList);
 		session.setAttribute("subTotal", subTotal);
 		session.setAttribute("shippingFee", shippingFee);
 		session.setAttribute("total", String.format("%.2f",total));

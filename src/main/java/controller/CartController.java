@@ -20,7 +20,7 @@ import DAO.BookInCartDAO;
 import db.util.MySqlDBConnector;
 import model.BookInCartModel;
 import model.CartModel;
-import model.OrderListModel;
+import model.OrderItemModel;
 
 /**
  * Servlet implementation class CartController

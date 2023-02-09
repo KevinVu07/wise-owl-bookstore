@@ -1,6 +1,6 @@
 package model;
 
-public class OrderListModel {
+public class OrderItemModel {
 	private int id;
 	private int userId;
 	private int bookId;
@@ -11,9 +11,9 @@ public class OrderListModel {
 	private double orderTotal;
 	private String orderDate;
 	
-	public OrderListModel() {};
+	public OrderItemModel() {};
 	
-	public OrderListModel(int id, int userId, int bookId, String bookName, String bookImage, double bookPrice, int orderQty, double orderTotal, String orderDate) {
+	public OrderItemModel(int id, int userId, int bookId, String bookName, String bookImage, double bookPrice, int orderQty, double orderTotal, String orderDate) {
 		super();
 		this.id = id;
 		this.userId = userId;

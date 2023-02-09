@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO.BookInCartDAO;
-import DAO.OrderDAO;
+import DAO.OrderItemDAO;
 import db.util.MySqlDBConnector;
 import model.BookInCartModel;
 import model.OrderModel;
@@ -72,7 +72,7 @@ public class CheckOutController extends HttpServlet {
 			order.setOrderTotal(orderTotal);
 			order.setOrderDate(formatter.format(date));
 
-			OrderDAO orderDAO = new OrderDAO();
+			OrderItemDAO orderItemDAO = new OrderItemDAO();
 
 			ResultSet rs = null;
 			PreparedStatement ps = null;
@@ -86,7 +86,7 @@ public class CheckOutController extends HttpServlet {
 				// if this book is not inside the order list yet
 				if (!rs.next()) {
 
-					boolean result = orderDAO.insertOrder(order);
+					boolean result = orderItemDAO.insertOrder(order);
 
 					if (result) {
 						System.out.println("this book has been added to order list...");

@@ -45,7 +45,7 @@
 		<div class="container-fluid w-100 mx-4">
 			<h2>Your order - reference ${orderRef}</h2>
 			<h4>Order Total: $${orderTotal}</h4>
-			<hr>
+			<h4>Order Date: ${orderDate}</h4>
 			<br>
 
 			<div class="container">
@@ -58,20 +58,20 @@
 						</tr>
 					</thead>
 					<tbody class="table-responsive">
-						<c:forEach var="order" items="${orderList}">
+						<c:forEach var="orderItem" items="${orderItemList}">
 							<tr>
 								<td class="d-flex w-auto">
 									<div id="cartBookImage">
 										<img
-											src="${pageContext.request.contextPath}/assets/images/books/${order.bookImage}" />
+											src="${pageContext.request.contextPath}/assets/images/books/${orderItem.bookImage}" />
 									</div>
 
 									<div id="cartBookDetails">
-										<h4>${order.bookName}</h4>
+										<h4>${orderItem.bookName}</h4>
 									</div>
 								</td>
-								<td>${order.orderQty}</td>
-								<td>$${order.orderTotal}</td>
+								<td>${orderItem.orderQty}</td>
+								<td>$${orderItem.orderTotal}</td>
 							</tr>
 						</c:forEach>
 					</tbody>

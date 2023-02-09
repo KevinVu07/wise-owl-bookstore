@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.OrderDAO;
+import DAO.OrderItemDAO;
 import db.util.MySqlDBConnector;
 import model.OrderModel;
 
@@ -49,8 +49,8 @@ public class OrderNowController extends HttpServlet {
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
 		
 
-		OrderDAO orderDAO = new OrderDAO();
-		OrderModel order = orderDAO.getOrderByBookIdAndUserId(bookId, userId);
+		OrderItemDAO orderItemDAO = new OrderItemDAO();
+		OrderModel order = orderItemDAO.getOrderByBookIdAndUserId(bookId, userId);
 
 		System.out.println(order == null);
 //			String sqlQuery = "SELECT * FROM `order` WHERE (user_id = ? AND book_id = ? AND order_reference IS NULL)";
@@ -79,7 +79,7 @@ public class OrderNowController extends HttpServlet {
 			newOrder.setOrderQty(orderQty);
 			newOrder.setOrderTotal(orderTotal);
 			newOrder.setOrderDate(formatter.format(date));
-			boolean result = orderDAO.insertOrder(newOrder);
+			boolean result = orderItemDAO.insertOrder(newOrder);
 
 			if (result) {
 				System.out.println("this book has been added to order list...");

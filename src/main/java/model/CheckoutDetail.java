@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class CheckoutDetail {
-	private List<OrderListModel> orderList;
+	private List<OrderItemModel> orderItemList;
 	private double subTotal;
 	private double shippingFee;
 	private double tax;
@@ -13,12 +13,12 @@ public class CheckoutDetail {
 	
 	public CheckoutDetail() {}
 
-	public List<OrderListModel> getOrderList() {
-		return orderList;
+	public List<OrderItemModel> getOrderList() {
+		return orderItemList;
 	}
 
-	public void setOrderList(List<OrderListModel> orderList) {
-		this.orderList = orderList;
+	public void setOrderList(List<OrderItemModel> orderItemList) {
+		this.orderItemList = orderItemList;
 	}
 
 	public double getSubTotal() {

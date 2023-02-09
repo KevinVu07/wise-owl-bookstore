@@ -53,12 +53,12 @@
 					</tr>
 				</thead>
 				<tbody class="table-responsive">
-					<c:forEach var="orderRef" items="${orderRefList}">
+					<c:forEach var="order" items="${orderList}">
 						<tr>
-							<td><a href="past-order-details?orderRef=${orderRef}">
-									Order Reference ${orderRef} </a></td>
-							<td>$${total}</td>
-							<td>5/2/2023</td>
+							<td><a href="past-order-details?orderRef=${order.orderRef}">
+									Order Reference ${order.orderRef} </a></td>
+							<td>$${order.orderTotal}</td>
+							<td>${order.orderDate}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

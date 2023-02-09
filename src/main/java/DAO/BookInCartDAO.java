@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,21 +50,7 @@ public class BookInCartDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (ps != null) {
-					ps.close();
-				}
-				if (connection != null) {
-					connection.close();
-				}
-
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			close(connection, ps, rs);
 		}
 
 		return booksInCart;
@@ -103,27 +90,14 @@ public class BookInCartDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (ps != null) {
-					ps.close();
-				}
-				if (connection != null) {
-					connection.close();
-				}
-
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			close(connection, ps, rs);
 		}
 		return book;
 	}
 
 	public void removeBookInCartByBookIdAndUserId(int bookId, int userId) {
 		Connection connection = MySqlDBConnector.makeConnection();
+		ResultSet rs = null;
 		PreparedStatement ps = null;
 		String sqlQuery = "DELETE FROM `cart` WHERE book_id = ? AND user_id = ?";
 
@@ -137,21 +111,26 @@ public class BookInCartDAO {
 			e.printStackTrace();
 
 		} finally {
-			try {
-
-				if (ps != null) {
-					ps.close();
-				}
-				if (connection != null) {
-					connection.close();
-				}
-
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			close(connection, ps, rs);
 		}
+	}
+	
+	private void close(Connection connection, Statement stm, ResultSet rs) {
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+			if (stm != null) {
+				stm.close();
+			}
+			if (connection != null) {
+				connection.close();
+			}
 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

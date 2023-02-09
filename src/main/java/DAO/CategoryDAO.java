@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,24 +45,28 @@ public class CategoryDAO {
 			e.printStackTrace();
 		} 
 		finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (ps != null) {
-					ps.close();
-				}
-				if (connection != null) {
-					connection.close();
-				}
-
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			close(connection, ps, rs);
 		}
 		
 		return categoryList;
+	}
+	
+	private void close(Connection connection, Statement stm, ResultSet rs) {
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+			if (stm != null) {
+				stm.close();
+			}
+			if (connection != null) {
+				connection.close();
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

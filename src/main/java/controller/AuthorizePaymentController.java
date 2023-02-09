@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.paypal.base.rest.PayPalRESTException;
 
 import model.CheckoutDetail;
-import model.OrderListModel;
+import model.OrderItemModel;
 import model.OrderModel;
 import payment.util.PaymentServices;
 
@@ -51,7 +51,7 @@ public class AuthorizePaymentController extends HttpServlet {
 		
 			HttpSession session = request.getSession(false);
 		
-			List<OrderListModel> orderList = (List<OrderListModel>) session.getAttribute("orderList");
+			List<OrderItemModel> orderItemList = (List<OrderItemModel>) session.getAttribute("orderItemList");
 			
 	        String subtotal = String.valueOf(session.getAttribute("subTotal"));
 	        String shippingFee = String.valueOf(session.getAttribute("shippingFee"));
@@ -62,7 +62,7 @@ public class AuthorizePaymentController extends HttpServlet {
 	        
 	        CheckoutDetail checkoutDetail = new CheckoutDetail();
 	        
-	        checkoutDetail.setOrderList(orderList);
+	        checkoutDetail.setOrderList(orderItemList);
 	        checkoutDetail.setSubTotal(Double.parseDouble(subtotal));
 	        checkoutDetail.setShippingFee(Double.parseDouble(shippingFee));
 	        checkoutDetail.setTax(Double.parseDouble(tax));
@@ -76,7 +76,7 @@ public class AuthorizePaymentController extends HttpServlet {
 	        	String email = String.valueOf(session.getAttribute("email"));
 	        	
 	            PaymentServices paymentServices = new PaymentServices();
-	            String approvalLink = paymentServices.authorizePayment(checkoutDetail, firstName, lastName, email, orderList);
+	            String approvalLink = paymentServices.authorizePayment(checkoutDetail, firstName, lastName, email, orderItemList);
 	 
 	            response.sendRedirect(approvalLink);
 	             

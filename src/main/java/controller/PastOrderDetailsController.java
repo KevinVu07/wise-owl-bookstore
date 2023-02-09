@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO.OrderDAO;
-import model.OrderListModel;
+import DAO.OrderItemDAO;
+import model.CompletedOrderModel;
+import model.OrderItemModel;
 
 /**
  * Servlet implementation class PastOrderDetailsController
@@ -42,16 +44,21 @@ public class PastOrderDetailsController extends HttpServlet {
 		int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
 
 		String orderRef = request.getParameter("orderRef");
-
+		
 		OrderDAO orderDAO = new OrderDAO();
-		List<OrderListModel> orderList = orderDAO.getAllOrderByUserIdAndOrderRef(userId, orderRef);
-		double orderTotal = 0;
-		for (OrderListModel order : orderList) {
-			orderTotal = orderTotal + order.getOrderTotal();
-		}
+		
+		CompletedOrderModel order = orderDAO.getOrderByUserIdAndOrderRef(userId, orderRef);
+		
+		double orderTotal = order.getOrderTotal();
+		String orderDate = order.getOrderDate();
 		session.setAttribute("orderTotal", orderTotal);
+		session.setAttribute("orderDate", orderDate);
+
+		OrderItemDAO orderItemDAO = new OrderItemDAO();
+		List<OrderItemModel> orderItemList = orderItemDAO.getAllOrderByUserIdAndOrderRef(userId, orderRef);
+		
 		session.setAttribute("orderRef", orderRef);
-		session.setAttribute("orderList", orderList);
+		session.setAttribute("orderItemList", orderItemList);
 		
 
 		RequestDispatcher dp = request.getRequestDispatcher("pastOrderDetails.jsp");

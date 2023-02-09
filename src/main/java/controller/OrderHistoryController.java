@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO.OrderDAO;
-import model.OrderListModel;
+import DAO.OrderItemDAO;
+import model.CompletedOrderModel;
+import model.OrderItemModel;
 import model.OrderModel;
 
 /**
@@ -44,8 +46,8 @@ public class OrderHistoryController extends HttpServlet {
 
 		OrderDAO orderDAO = new OrderDAO();
 		
-		List<String> orderRefList = orderDAO.getOrderRefListByUserId(userId);
-		session.setAttribute("orderRefList", orderRefList);
+		List<CompletedOrderModel> orderList = orderDAO.getAllOrderByUserId(userId);
+		session.setAttribute("orderList", orderList);
 		
 //		for (String orderRef : orderRefList) {
 //			double total = 0;

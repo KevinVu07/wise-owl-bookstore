@@ -8,20 +8,20 @@ import com.paypal.api.payments.*;
 import com.paypal.base.rest.*;
 
 import model.CheckoutDetail;
-import model.OrderListModel;
+import model.OrderItemModel;
 
 public class PaymentServices {
     private static final String CLIENT_ID = "AXQERl-l44oErZwKmGBpTl5nxcYW_fPhVJzEwDQn4B3yiyaNPt5qdHaDOuo9zXDEYnOyIx7Evdf__bDH";
     private static final String CLIENT_SECRET = "EC08RPCLXcpFqYe95ZNQxlZKeSrk71KmSBklaoHLUhrC_R-yI8jwR9KIhTNko36SpBh15GJeOb_nvR8V";
     private static final String MODE = "sandbox";
  
-    public String authorizePayment(CheckoutDetail checkoutDetail, String firstName, String lastName, String email, List<OrderListModel> orderList)        
+    public String authorizePayment(CheckoutDetail checkoutDetail, String firstName, String lastName, String email, List<OrderItemModel> orderItemList)        
             throws PayPalRESTException {     
     	
  
         Payer payer = getPayerInformation(firstName, lastName, email);
         RedirectUrls redirectUrls = getRedirectURLs();
-        List<Transaction> listTransaction = getTransactionInformation(checkoutDetail, orderList);
+        List<Transaction> listTransaction = getTransactionInformation(checkoutDetail, orderItemList);
          
         Payment requestPayment = new Payment();
         requestPayment.setTransactions(listTransaction);
@@ -61,7 +61,7 @@ public class PaymentServices {
         return redirectUrls;
     }
      
-    private List<Transaction> getTransactionInformation(CheckoutDetail checkoutDetail, List<OrderListModel> orderList) {
+    private List<Transaction> getTransactionInformation(CheckoutDetail checkoutDetail, List<OrderItemModel> orderItemList) {
     	Details details = new Details();
         details.setShipping(String.valueOf(checkoutDetail.getShippingFee()));
         details.setSubtotal(String.valueOf(checkoutDetail.getSubTotal()));
@@ -71,7 +71,7 @@ public class PaymentServices {
         amount.setCurrency("AUD");
         
         int itemsAmount = 0;
-        for (OrderListModel book : orderList) {
+        for (OrderItemModel book : orderItemList) {
         	itemsAmount = itemsAmount + book.getOrderQty();
         }
         
@@ -87,7 +87,7 @@ public class PaymentServices {
         ItemList itemList = new ItemList();
         List<Item> items = new ArrayList<>();
         
-        for (OrderListModel book : orderList) {
+        for (OrderItemModel book : orderItemList) {
         	 Item item = new Item();
              item.setCurrency("AUD");
              item.setName(book.getBookName());

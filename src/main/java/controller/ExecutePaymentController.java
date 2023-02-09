@@ -1,7 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,6 +14,10 @@ import com.paypal.api.payments.*;
 import com.paypal.base.rest.PayPalRESTException;
 
 import DAO.OrderDAO;
+import DAO.OrderItemDAO;
+import model.CompletedOrderModel;
+import model.OrderItemModel;
+import model.OrderModel;
 import payment.util.PaymentServices;
 /**
  * Servlet implementation class ExecutePaymentController
@@ -52,12 +58,36 @@ public class ExecutePaymentController extends HttpServlet {
 				int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
 				String orderRef = String.valueOf(Math.round(Math.random() * 100000));
 				
-				System.out.println("random order ref number is " + orderRef);
+				OrderItemDAO orderItemDAO = new OrderItemDAO();
+				orderItemDAO.updateOrderReferenceByUserId(userId, orderRef);
+				
+				List<OrderItemModel> orderItemList = orderItemDAO.getAllOrderByUserIdAndOrderRef(userId, orderRef);
+				
+				double orderTotal = 0;
+				
+				for (OrderItemModel orderItem : orderItemList) {
+					orderTotal = orderTotal + orderItem.getOrderTotal();
+				}
+				
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+				Date date = new Date();
+
 				
 				OrderDAO orderDAO = new OrderDAO();
-				orderDAO.updateOrderReferenceByUserId(userId, orderRef);
-		
+				CompletedOrderModel order = new CompletedOrderModel();
 				
+				order.setOrderRef(orderRef);
+				order.setUserId(userId);
+				order.setOrderTotal(orderTotal);
+				order.setOrderDate(formatter.format(date));
+				
+				boolean result = orderDAO.insertCompletedOrder(order);
+				
+				if (result) {
+					System.out.println("Order completed and saved to database");
+				} else {
+					System.out.println("Order not saved to database");
+				}
 	            
 	            PayerInfo payerInfo = payment.getPayer().getPayerInfo();
 	            Transaction transaction = payment.getTransactions().get(0);
