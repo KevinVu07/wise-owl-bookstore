@@ -56,18 +56,19 @@ public class ExecutePaymentController extends HttpServlet {
 
 	            HttpSession session = request.getSession(false);
 				int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
+				double orderTotal = Double.parseDouble(String.valueOf(session.getAttribute("orderTotal")));
 				String orderRef = String.valueOf(Math.round(Math.random() * 100000));
 				
 				OrderItemDAO orderItemDAO = new OrderItemDAO();
 				orderItemDAO.updateOrderReferenceByUserId(userId, orderRef);
 				
-				List<OrderItemModel> orderItemList = orderItemDAO.getAllOrderByUserIdAndOrderRef(userId, orderRef);
-				
-				double orderTotal = 0;
-				
-				for (OrderItemModel orderItem : orderItemList) {
-					orderTotal = orderTotal + orderItem.getOrderTotal();
-				}
+//				List<OrderItemModel> orderItemList = orderItemDAO.getAllOrderByUserIdAndOrderRef(userId, orderRef);
+//				
+//				double orderTotal = 0;
+//				
+//				for (OrderItemModel orderItem : orderItemList) {
+//					orderTotal = orderTotal + orderItem.getOrderTotal();
+//				}
 				
 				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 				Date date = new Date();

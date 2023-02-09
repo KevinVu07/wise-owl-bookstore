@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.mysql.cj.protocol.Resultset;
-
 import db.util.MySqlDBConnector;
 import model.BookDetailsModel;
 

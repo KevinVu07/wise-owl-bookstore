@@ -56,7 +56,7 @@ public class AuthorizePaymentController extends HttpServlet {
 	        String subtotal = String.valueOf(session.getAttribute("subTotal"));
 	        String shippingFee = String.valueOf(session.getAttribute("shippingFee"));
 	        String tax = String.valueOf(session.getAttribute("tax"));
-	        String total = String.valueOf(session.getAttribute("total"));
+	        String total = String.valueOf(session.getAttribute("orderTotal"));
 	        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 	        Date checkoutDate = new Date();
 	        

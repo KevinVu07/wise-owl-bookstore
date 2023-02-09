@@ -56,15 +56,18 @@ public class OrderSummaryController extends HttpServlet {
 			shippingFee = 0;
 		}
 		
+		double orderTotal = subTotal + shippingFee;
+		
 		double tax = subTotal * 0.1;
 		tax = (double)Math.round(tax * 100d) / 100d;
 		
-		double total = subTotal + shippingFee + tax;
+		
 		
 		session.setAttribute("orderItemList", orderItemList);
 		session.setAttribute("subTotal", subTotal);
 		session.setAttribute("shippingFee", shippingFee);
-		session.setAttribute("total", String.format("%.2f",total));
+//		session.setAttribute("total", String.format("%.2f",total));
+		session.setAttribute("orderTotal", orderTotal);
 		session.setAttribute("tax", String.format("%.2f",tax));
 		
 		RequestDispatcher dp = request.getRequestDispatcher("checkout.jsp");

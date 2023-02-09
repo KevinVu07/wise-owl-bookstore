@@ -93,10 +93,11 @@
 			</div>
 			<div id="total" class="d-flex justify-content-between">
 				<strong><p>Total</p></strong>
-				<p>$${sessionScope.total}</p>
+				<p>$${sessionScope.orderTotal}</p>
 			</div>
 			<div class="d-flex justify-content-between">
-				<form class="mx-2" action="" method="post">	
+				<form class="mx-2" action="stripe-payment" method="get">	
+					<input type="hidden" name="orderTotal" value="${sessionScope.orderTotal}" /> 
 					<button class="btn btn-success" type="submit" value="payment">Pay By Credit Card</button>
 				</form>
 				<form class="mx-2" action="authorize-payment" method="post">	
