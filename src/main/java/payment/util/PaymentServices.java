@@ -15,13 +15,13 @@ public class PaymentServices {
     private static final String CLIENT_SECRET = "EC08RPCLXcpFqYe95ZNQxlZKeSrk71KmSBklaoHLUhrC_R-yI8jwR9KIhTNko36SpBh15GJeOb_nvR8V";
     private static final String MODE = "sandbox";
  
-    public String authorizePayment(CheckoutDetail checkoutDetail, String firstName, String lastName, String email, List<OrderItemModel> orderItemList)        
+    public String authorizePayment(CheckoutDetail checkoutDetail, String firstName, String lastName, String email)        
             throws PayPalRESTException {     
     	
  
         Payer payer = getPayerInformation(firstName, lastName, email);
         RedirectUrls redirectUrls = getRedirectURLs();
-        List<Transaction> listTransaction = getTransactionInformation(checkoutDetail, orderItemList);
+        List<Transaction> listTransaction = getTransactionInformation(checkoutDetail);
          
         Payment requestPayment = new Payment();
         requestPayment.setTransactions(listTransaction);
@@ -61,7 +61,7 @@ public class PaymentServices {
         return redirectUrls;
     }
      
-    private List<Transaction> getTransactionInformation(CheckoutDetail checkoutDetail, List<OrderItemModel> orderItemList) {
+    private List<Transaction> getTransactionInformation(CheckoutDetail checkoutDetail) {
     	Details details = new Details();
         details.setShipping(checkoutDetail.getShippingFee());
         details.setSubtotal(checkoutDetail.getSubTotal());
@@ -70,12 +70,6 @@ public class PaymentServices {
         Amount amount = new Amount();
         amount.setCurrency("AUD");
         
-        int itemsAmount = 0;
-        for (OrderItemModel book : orderItemList) {
-        	itemsAmount = itemsAmount + book.getOrderQty();
-        }
-        
-        System.out.println("item amount is " + itemsAmount);
         amount.setTotal(checkoutDetail.getTotal());
         
         amount.setDetails(details);
@@ -86,19 +80,17 @@ public class PaymentServices {
          
         ItemList itemList = new ItemList();
         List<Item> items = new ArrayList<>();
-        
-        for (OrderItemModel book : orderItemList) {
-        	 Item item = new Item();
-             item.setCurrency("AUD");
-             item.setName(book.getBookName());
-             item.setPrice(String.format("%.2f", book.getBookPrice() / 1.1));
-             item.setTax(String.format("%.2f", Math.round(book.getOrderTotal() * 0.1 * 100d) / 100d));
-             item.setQuantity(String.valueOf(book.getOrderQty()));
-              
-             items.add(item);
-             itemList.setItems(items);
-             transaction.setItemList(itemList);
-		}
+         
+        Item item = new Item();
+        item.setCurrency("AUD");
+        item.setName("Book purchase from Wise Owl Bookstore");
+        item.setPrice(checkoutDetail.getSubTotal());
+        item.setTax(checkoutDetail.getTax());
+        item.setQuantity("1");
+         
+        items.add(item);
+        itemList.setItems(items);
+        transaction.setItemList(itemList);
          
         List<Transaction> listTransaction = new ArrayList<>();
         listTransaction.add(transaction);  

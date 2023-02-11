@@ -67,7 +67,7 @@ public class StripePaymentController extends HttpServlet {
 			SessionCreateParams params = SessionCreateParams.builder()
 					.setMode(SessionCreateParams.Mode.PAYMENT)
 					.addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
-					.setSuccessUrl(YOUR_DOMAIN + "/paymentSuccess.jsp")
+					.setSuccessUrl(YOUR_DOMAIN + "/payment-success")
 					.setCancelUrl(YOUR_DOMAIN + "/paymentCancel.jsp")
 					.setAutomaticTax(
 				              SessionCreateParams.AutomaticTax.builder()
@@ -94,41 +94,7 @@ public class StripePaymentController extends HttpServlet {
 			
 			// If payment has been successful, update order table database with completed order
 			
-			HttpSession session2 = request.getSession(false);
-			int userId = Integer.parseInt(String.valueOf(session2.getAttribute("id")));
-			String orderRef = String.valueOf(Math.round(Math.random() * 100000));
-			double orderTotal2 = Double.parseDouble(String.valueOf(session2.getAttribute("orderTotal")));
 			
-			OrderItemDAO orderItemDAO = new OrderItemDAO();
-			orderItemDAO.updateOrderReferenceByUserId(userId, orderRef);
-			
-//			List<OrderItemModel> orderItemList = orderItemDAO.getAllOrderByUserIdAndOrderRef(userId, orderRef);
-//			
-//			double orderTotal2 = 0;
-//			
-//			for (OrderItemModel orderItem : orderItemList) {
-//				orderTotal2 = orderTotal2 + orderItem.getOrderTotal();
-//			}
-			
-			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-			Date date = new Date();
-
-			
-			OrderDAO orderDAO = new OrderDAO();
-			CompletedOrderModel order = new CompletedOrderModel();
-			
-			order.setOrderRef(orderRef);
-			order.setUserId(userId);
-			order.setOrderTotal(orderTotal2);
-			order.setOrderDate(formatter.format(date));
-			
-			boolean result = orderDAO.insertCompletedOrder(order);
-			
-			if (result) {
-				System.out.println("Order completed and saved to database");
-			} else {
-				System.out.println("Order not saved to database");
-			}
 
 			response.sendRedirect(session.getUrl());
 

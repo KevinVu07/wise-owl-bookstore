@@ -76,7 +76,7 @@ public class AuthorizePaymentController extends HttpServlet {
 	        	String email = String.valueOf(session.getAttribute("email"));
 	        	
 	            PaymentServices paymentServices = new PaymentServices();
-	            String approvalLink = paymentServices.authorizePayment(checkoutDetail, firstName, lastName, email, orderItemList);
+	            String approvalLink = paymentServices.authorizePayment(checkoutDetail, firstName, lastName, email);
 	 
 	            response.sendRedirect(approvalLink);
 	             

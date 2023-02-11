@@ -48,15 +48,12 @@ public class OrderSummaryController extends HttpServlet {
 		double subTotalItems = 0;
 		for (OrderItemModel order : orderItemList) {
 			subTotalItems = subTotalItems + order.getOrderTotal();
-			subTotalItems = (double)Math.round(subTotalItems * 100d) / 100d; 
 		}
 		
 		double shippingFee = 7.50;
 		if (subTotalItems >= 50 || subTotalItems == 0) {
 			shippingFee = 0;
 		}
-		
-		
 		
 		double subTotal = subTotalItems / 1.1;
 		
