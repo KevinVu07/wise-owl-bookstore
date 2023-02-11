@@ -95,13 +95,20 @@
 				<strong><p>Total</p></strong>
 				<p>$${sessionScope.orderTotal}</p>
 			</div>
-			<div class="d-flex justify-content-between">
-				<form class="mx-2" action="stripe-payment" method="get">	
-					<input type="hidden" name="orderTotal" value="${sessionScope.orderTotal}" /> 
-					<button class="btn btn-success" type="submit" value="payment">Pay By Credit Card</button>
+			<div class="d-flex justify-content-between align-items-center flex-column">
+				<form class="w-100" action="authorize-payment" method="post">	
+					<button style="background-color: #FFC33A; color: #003087" class="btn btn-primary" type="submit" value="payment"> 
+					<i class="fa-brands fa-paypal"></i>   Pay with Paypal</button>
 				</form>
-				<form class="mx-2" action="authorize-payment" method="post">	
-					<button class="btn btn-primary" type="submit" value="payment">Pay with Paypal</button>
+				<br>
+				<form class="w-100" action="stripe-payment" method="get">	
+					<input type="hidden" name="orderTotal" value="${sessionScope.orderTotal}" /> 
+					<button style="background-color: black" class="btn btn-success" type="submit" value="payment">
+					<i class="fa-brands fa-cc-visa"></i>
+					<i class="fa-brands fa-cc-mastercard"></i>
+					<i class="fa-brands fa-cc-amex"></i>
+					   Pay By Credit Card
+					</button>
 				</form>
 			</div>
 		</div>
