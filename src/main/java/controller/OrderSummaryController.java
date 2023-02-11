@@ -45,29 +45,32 @@ public class OrderSummaryController extends HttpServlet {
 		
 		List<OrderItemModel> orderItemList = orderItemDAO.getAllOrderByUserId(userId);
 		
-		double subTotal = 0;
+		double subTotalItems = 0;
 		for (OrderItemModel order : orderItemList) {
-			subTotal = subTotal + order.getOrderTotal();
-			subTotal = (double)Math.round(subTotal * 100d) / 100d; 
+			subTotalItems = subTotalItems + order.getOrderTotal();
+			subTotalItems = (double)Math.round(subTotalItems * 100d) / 100d; 
 		}
 		
 		double shippingFee = 7.50;
-		if (subTotal >= 50 || subTotal == 0) {
+		if (subTotalItems >= 50 || subTotalItems == 0) {
 			shippingFee = 0;
 		}
 		
-		double orderTotal = subTotal + shippingFee;
 		
-		double tax = subTotal * 0.1;
+		
+		double subTotal = subTotalItems / 1.1;
+		
+		double tax = subTotalItems * 0.1;
 		tax = (double)Math.round(tax * 100d) / 100d;
 		
+		double orderTotal = subTotal + shippingFee + tax;
 		
 		
 		session.setAttribute("orderItemList", orderItemList);
-		session.setAttribute("subTotal", subTotal);
-		session.setAttribute("shippingFee", shippingFee);
+		session.setAttribute("subTotal", String.format("%.2f",subTotal));
+		session.setAttribute("shippingFee", String.format("%.2f",shippingFee));
 //		session.setAttribute("total", String.format("%.2f",total));
-		session.setAttribute("orderTotal", orderTotal);
+		session.setAttribute("orderTotal", String.format("%.2f",orderTotal));
 		session.setAttribute("tax", String.format("%.2f",tax));
 		
 		RequestDispatcher dp = request.getRequestDispatcher("checkout.jsp");

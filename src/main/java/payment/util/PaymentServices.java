@@ -63,9 +63,9 @@ public class PaymentServices {
      
     private List<Transaction> getTransactionInformation(CheckoutDetail checkoutDetail, List<OrderItemModel> orderItemList) {
     	Details details = new Details();
-        details.setShipping(String.valueOf(checkoutDetail.getShippingFee()));
-        details.setSubtotal(String.valueOf(checkoutDetail.getSubTotal()));
-        details.setTax(String.valueOf(checkoutDetail.getTax()));
+        details.setShipping(checkoutDetail.getShippingFee());
+        details.setSubtotal(checkoutDetail.getSubTotal());
+        details.setTax(checkoutDetail.getTax());
      
         Amount amount = new Amount();
         amount.setCurrency("AUD");
@@ -76,7 +76,7 @@ public class PaymentServices {
         }
         
         System.out.println("item amount is " + itemsAmount);
-        amount.setTotal(String.valueOf(checkoutDetail.getTotal()));
+        amount.setTotal(checkoutDetail.getTotal());
         
         amount.setDetails(details);
      
@@ -91,8 +91,8 @@ public class PaymentServices {
         	 Item item = new Item();
              item.setCurrency("AUD");
              item.setName(book.getBookName());
-             item.setPrice(String.valueOf(book.getBookPrice()));
-             item.setTax(String.valueOf(Math.round(book.getOrderTotal() * 0.1 * 100d) / 100d));
+             item.setPrice(String.format("%.2f", book.getBookPrice() / 1.1));
+             item.setTax(String.format("%.2f", Math.round(book.getOrderTotal() * 0.1 * 100d) / 100d));
              item.setQuantity(String.valueOf(book.getOrderQty()));
               
              items.add(item);

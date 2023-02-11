@@ -21,32 +21,32 @@ public class CheckoutDetail {
 		this.orderItemList = orderItemList;
 	}
 
-	public double getSubTotal() {
-		return subTotal;
+	public String getSubTotal() {
+		return String.format("%.2f", subTotal);
 	}
 
 	public void setSubTotal(double subTotal) {
 		this.subTotal = subTotal;
 	}
 
-	public double getShippingFee() {
-		return shippingFee;
+	public String getShippingFee() {
+		return String.format("%.2f", shippingFee);
 	}
 
 	public void setShippingFee(double shippingFee) {
 		this.shippingFee = shippingFee;
 	}
 
-	public double getTax() {
-		return tax;
+	public String getTax() {
+		return String.format("%.2f", tax);
 	}
 
 	public void setTax(double tax) {
 		this.tax = tax;
 	}
 
-	public double getTotal() {
-		return total;
+	public String getTotal() {
+		return String.format("%.2f", total);
 	}
 
 	public void setTotal(double total) {
