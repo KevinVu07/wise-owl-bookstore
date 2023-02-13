@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -95,7 +96,7 @@ public class AddToCartController extends HttpServlet {
 			String addBookSuccess = "Book added to cart successfully"; 
 			session.setAttribute("addBookSuccess", addBookSuccess);
 			
-			response.sendRedirect("cart");
+			response.sendRedirect("new-books");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -30,7 +30,7 @@
   <section>
     <p>
       Thank you for your purchase! If you have any questions, please email
-      <a href="mailto:customerservice@wiseowlbookstore.com">customerservice@wiseowlbookstore.com</a>.
+      <a href="mailto:customerservice@wiseowlbookstore.com">customerservice@wiseowlbookshop.com</a>.
     </p>
     <div>
     	<form action="home" method="get">

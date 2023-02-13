@@ -52,10 +52,6 @@
 		<c:otherwise>
 			<section class="container my-4 h-auto d-flex justify-content-between">
 				<div id="cartBox" class="container-fluid w-75 mx-4">
-					<c:if test="${addBookSuccess != null}">
-						<p class="mt-2 text-center text-success">${addBookSuccess}</p>
-						<c:remove var="addBookSuccess" scope="session" />
-					</c:if>
 					<table class="table">
 						<thead>
 							<tr>

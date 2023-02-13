@@ -46,8 +46,11 @@
 
 	<section>
 		<div class="book_list">
+			<c:if test="${addBookSuccess != null}">
+						<p class="mt-2 text-center text-success">${addBookSuccess}</p>
+						<c:remove var="addBookSuccess" scope="session" />
+					</c:if>
 			<h1>Book List</h1>
-			
 			<div>
 				<form class="d-flex mb-2 justify-content-center align-items-center">
 					<i class="mx-2 fas fa-search"></i>
@@ -55,7 +58,7 @@
 				</form>
 			</div>
 			
-			<div class="book_list_box" id="book_list">
+			<div class="book_list_box">
 				<c:forEach var="book" items="${bookList}">
 					<div class="book_card d-flex flex-column justify-content-between">
 						<div class="book_image">
@@ -82,7 +85,7 @@
 										<input type="hidden" name="bookName" value="${book.name}" /> 
 										<input type="hidden" name="bookType" value="${book.type}" /> 
 										<input type="hidden" name="bookDescription" value="${book.description}" />
-										<in put type="hidden" name="bookPrice" value="${book.salePrice}" />
+										<input type="hidden" name="bookPrice" value="${book.salePrice}" />
 										<button type="submit" class="btn btn-success">Add To Cart</button>		
 									</div>
 								</form>	

@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Book Store Website</title>
+<title>Wise Owl Bookshop</title>
 
 <!-- Bootstrap, CSS, and Fontawesome plug in -->
 <link rel="stylesheet"
@@ -43,13 +43,6 @@
 <body>
 	<section>
 		<jsp:include page="navbar.jsp" />
-		<div>
-			<form class="d-flex" role="search">
-				<input class="form-control me-2" type="search" placeholder="Search"
-					aria-label="Search" />
-				<button class="btn btn-outline-success" type="submit">Search</button>
-			</form>
-		</div>
 	</section>
 
 	<section>
@@ -60,13 +53,12 @@
 		<div class="main">
 			<div class="main_tag">
 				<h1>
-					WELCOME TO<br /> <span>WISE OWL BOOKSTORE</span>
+					WELCOME TO<br /> <span>WISE OWL BOOKSHOP</span>
 				</h1>
 
 				<p>Oh hello there! Wise Owl here. We have a lovely collection of
 					books here, so why don't you come in and explore our store? Who
 					knows, you may even find some rare gems to take home!</p>
-				<a href="#" class="main_btn">Learn More</a>
 			</div>
 
 			<div class="main_img">
@@ -93,7 +85,7 @@
 			<div class="services_card">
 				<i class="fa-solid fa-headset"></i>
 				<h3>24/7 Customer Support</h3>
-				<p>Call us anytime in need!</p>
+				<p>Call us any time in need!</p>
 			</div>
 			<div class="services_card">
 				<i class="fa-solid fa-lock"></i>
@@ -113,9 +105,8 @@
 
 		<div class="about_tag">
 			<h1>About Us</h1>
-			<p>A bookstore filled with jazz music where you can relax and
-				enjoy finding the books that you love</p>
-			<a href="#" class="about_btn">Learn More</a>
+			<p>A book shop where book lovers can relax and
+				finding the joy in looking for the books you love </p>
 		</div>
 	</div>
 
