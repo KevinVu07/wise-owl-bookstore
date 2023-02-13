@@ -9,7 +9,7 @@
 <title>Book List Page</title>
 
 <!-- Bootstrap, CSS, and Fontawesome plug in -->
-<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -20,38 +20,42 @@
 
 <!-- Favicon plugin -->
 <link rel="apple-touch-icon" sizes="180x180"
-	href="assets/images/favicon/apple-touch-icon.png" />
+	href="${pageContext.request.contextPath}/assets/images/favicon/apple-touch-icon.png" />
 <link rel="icon" type="image/png" sizes="32x32"
-	href="assets/images/favicon/favicon-32x32.png" />
+	href="${pageContext.request.contextPath}/assets/images/favicon/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16"
-	href="assets/images/favicon/favicon-16x16.png" />
-<link rel="manifest" href="assets/images/favicon/site.webmanifest" />
-<link rel="mask-icon" href="assets/images/favicon/safari-pinned-tab.svg"
+	href="${pageContext.request.contextPath}/assets/images/favicon/favicon-16x16.png" />
+<link rel="manifest"
+	href="${pageContext.request.contextPath}/assets/images/favicon/site.webmanifest" />
+<link rel="mask-icon"
+	href="${pageContext.request.contextPath}/assets/images/favicon/safari-pinned-tab.svg"
 	color="#5bbad5" />
-<link rel="shortcut icon" href="assets/images/favicon/favicon.ico" />
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/assets/images/favicon/favicon.ico" />
 <meta name="msapplication-TileColor" content="#da532c" />
 <meta name="msapplication-config"
-	content="assets/images/favicon/browserconfig.xml" />
+	content="${pageContext.request.contextPath}/assets/images/favicon/browserconfig.xml" />
 <meta name="theme-color" content="#ffffff" />
 </head>
 <body>
 	<section>
 		<jsp:include page="navbar.jsp" />
 
-		<div>
-			<form class="d-flex" role="search">
-				<input class="form-control me-2" type="search" placeholder="Search"
-					aria-label="Search" />
-				<button class="btn btn-outline-success" type="submit">Search</button>
-			</form>
-		</div>
+		
 	</section>
 
 	<section>
 		<div class="book_list">
 			<h1>Book List</h1>
 			
-			<div class="book_list_box">
+			<div>
+				<form class="d-flex mb-2 justify-content-center align-items-center">
+					<i class="mx-2 fas fa-search"></i>
+					<input class="w-50" type="text" name="" id="search_book" placeholder="Search books" onkeyup="searchBook()">
+				</form>
+			</div>
+			
+			<div class="book_list_box" id="book_list">
 				<c:forEach var="book" items="${bookList}">
 					<div class="book_card d-flex flex-column justify-content-between">
 						<div class="book_image">
@@ -78,7 +82,7 @@
 										<input type="hidden" name="bookName" value="${book.name}" /> 
 										<input type="hidden" name="bookType" value="${book.type}" /> 
 										<input type="hidden" name="bookDescription" value="${book.description}" />
-										<input type="hidden" name="bookPrice" value="${book.salePrice}" />
+										<in put type="hidden" name="bookPrice" value="${book.salePrice}" />
 										<button type="submit" class="btn btn-success">Add To Cart</button>		
 									</div>
 								</form>	
@@ -100,6 +104,8 @@
 
 	<jsp:include page="footer.jsp" />
 
+
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/searchBook.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
