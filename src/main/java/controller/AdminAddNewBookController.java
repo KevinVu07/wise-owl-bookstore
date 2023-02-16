@@ -51,13 +51,9 @@ public class AdminAddNewBookController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			System.out.println("I am here");
 			String bookName = request.getParameter("bookName");
-			System.out.println(bookName);
 			String bookDescription = request.getParameter("bookDescription");
-			System.out.println(bookDescription);
 			String bookCategory = request.getParameter("bookCategory");
-			System.out.println(bookCategory);
 			
 			int categoryId = 0;
 			switch (bookCategory) {
@@ -74,7 +70,6 @@ public class AdminAddNewBookController extends HttpServlet {
 				break;
 			}
 			
-			System.out.println(categoryId);
 			
 			String bookType = request.getParameter("bookType");
 			int editionNumber = Integer.parseInt(request.getParameter("editionNumber"));
@@ -97,7 +92,6 @@ public class AdminAddNewBookController extends HttpServlet {
 				authorId = authorDAO.getAuthorIdByAuthorName(authorName);
 			}
 			
-			System.out.println("I am here 2");
 			
 			Part part = request.getPart("image");
 			String fileName = part.getSubmittedFileName();

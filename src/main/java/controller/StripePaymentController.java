@@ -60,8 +60,9 @@ public class StripePaymentController extends HttpServlet {
 		System.out.println(orderTotal);
 
 		try {
+			System.out.println();
 			Stripe.apiKey = STRIPE_API_KEY;
-			String YOUR_DOMAIN = "http://localhost:8080/wise-owl-bookstore";
+			String YOUR_DOMAIN = "http://www.wiseowlbookshop.com";
 			
 			
 			SessionCreateParams params = SessionCreateParams.builder()

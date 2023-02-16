@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.paypal.api.payments.PayerInfo;
+import com.paypal.api.payments.Transaction;
+
 import DAO.OrderDAO;
 import DAO.OrderItemDAO;
 import model.CompletedOrderModel;
@@ -36,21 +39,15 @@ public class StripePaymentSuccess extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session2 = request.getSession(false);
-		int userId = Integer.parseInt(String.valueOf(session2.getAttribute("id")));
+        
+		HttpSession session = request.getSession(false);
+		int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
+		double orderTotal = Double.parseDouble(String.valueOf(session.getAttribute("orderTotal")));
 		String orderRef = String.valueOf(Math.round(Math.random() * 100000));
-		double orderTotal2 = Double.parseDouble(String.valueOf(session2.getAttribute("orderTotal")));
 		
 		OrderItemDAO orderItemDAO = new OrderItemDAO();
 		orderItemDAO.updateOrderReferenceByUserId(userId, orderRef);
 		
-//		List<OrderItemModel> orderItemList = orderItemDAO.getAllOrderByUserIdAndOrderRef(userId, orderRef);
-//		
-//		double orderTotal2 = 0;
-//		
-//		for (OrderItemModel orderItem : orderItemList) {
-//			orderTotal2 = orderTotal2 + orderItem.getOrderTotal();
-//		}
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		Date date = new Date();
@@ -61,7 +58,7 @@ public class StripePaymentSuccess extends HttpServlet {
 		
 		order.setOrderRef(orderRef);
 		order.setUserId(userId);
-		order.setOrderTotal(orderTotal2);
+		order.setOrderTotal(orderTotal);
 		order.setOrderDate(formatter.format(date));
 		
 		boolean result = orderDAO.insertCompletedOrder(order);
@@ -72,8 +69,8 @@ public class StripePaymentSuccess extends HttpServlet {
 			System.out.println("Order not saved to database");
 		}
 		
-		RequestDispatcher dp = request.getRequestDispatcher("paymentSuccess.jsp");
-		dp.forward(request, response);
+		request.getRequestDispatcher("paymentSuccess.jsp").forward(request, response);
+        
 	}
 
 	/**

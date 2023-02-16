@@ -16,7 +16,6 @@ import com.paypal.base.rest.PayPalRESTException;
 
 import model.CheckoutDetail;
 import model.OrderItemModel;
-import model.OrderModel;
 import payment.util.PaymentServices;
 
 /**
@@ -49,6 +48,8 @@ public class AuthorizePaymentController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+			
+		
 			HttpSession session = request.getSession(false);
 		
 			List<OrderItemModel> orderItemList = (List<OrderItemModel>) session.getAttribute("orderItemList");
@@ -74,6 +75,7 @@ public class AuthorizePaymentController extends HttpServlet {
 	        	String firstName = String.valueOf(session.getAttribute("firstName"));
 	        	String lastName = String.valueOf(session.getAttribute("lastName"));
 	        	String email = String.valueOf(session.getAttribute("email"));
+	        	String userId = String.valueOf(session.getAttribute("id")); 
 	        	
 	            PaymentServices paymentServices = new PaymentServices();
 	            String approvalLink = paymentServices.authorizePayment(checkoutDetail, firstName, lastName, email);

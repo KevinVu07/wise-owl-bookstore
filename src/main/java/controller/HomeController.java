@@ -32,21 +32,8 @@ public class HomeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// BOOK
-		// create new object bookDAO from class BookDAO -> so it can call function getAll() from BookDAO
-//		BookDAO bookDAO = new BookDAO();
-//		
-//		// get the book list by calling function getAll()
-//		List<Book> bookList = bookDAO.getAll();
-//		
-//	
-//		// CATEGORY
-//		CategoryDAO categoryDAO = new CategoryDAO();
-//		List<Category> categoryList = categoryDAO.getAllCategory();
-//		
-//		
-//		request.setAttribute("bookList", bookList);
-//		request.setAttribute("categoryList", categoryList);
+		
+        System.out.println("paypal context path is" + request.getContextPath());
 		
 		RequestDispatcher dp = request.getRequestDispatcher("home.jsp");
 		dp.forward(request, response);

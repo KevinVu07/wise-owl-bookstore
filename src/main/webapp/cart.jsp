@@ -77,7 +77,6 @@
 										</div>
 									</td>
 									<td>$${book.salePrice}</td>
-									</form>
 									<td>
 										<form action="" method="get">
 											<input type="hidden" name="bookId" value="${book.id}" />

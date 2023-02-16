@@ -92,7 +92,7 @@
 				<p>$${sessionScope.tax}</p>
 			</div>
 			<div id="total" class="d-flex justify-content-between">
-				<strong><p>Total</p></strong>
+				<p><strong>Total</strong></p>
 				<p>$${sessionScope.orderTotal}</p>
 			</div>
 			<div class="d-flex justify-content-between align-items-center flex-column">

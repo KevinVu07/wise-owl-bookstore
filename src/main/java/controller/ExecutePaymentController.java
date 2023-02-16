@@ -49,47 +49,42 @@ public class ExecutePaymentController extends HttpServlet {
 		// TODO Auto-generated method stub
 		 	String paymentId = request.getParameter("paymentId");
 	        String payerId = request.getParameter("PayerID");
+	        
+
 	 
 	        try {
 	            PaymentServices paymentServices = new PaymentServices();
 	            Payment payment = paymentServices.executePayment(paymentId, payerId);
-
-	            HttpSession session = request.getSession(false);
-				int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
-				double orderTotal = Double.parseDouble(String.valueOf(session.getAttribute("orderTotal")));
-				String orderRef = String.valueOf(Math.round(Math.random() * 100000));
-				
-				OrderItemDAO orderItemDAO = new OrderItemDAO();
-				orderItemDAO.updateOrderReferenceByUserId(userId, orderRef);
-				
-//				List<OrderItemModel> orderItemList = orderItemDAO.getAllOrderByUserIdAndOrderRef(userId, orderRef);
-//				
-//				double orderTotal = 0;
-//				
-//				for (OrderItemModel orderItem : orderItemList) {
-//					orderTotal = orderTotal + orderItem.getOrderTotal();
-//				}
-				
-				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-				Date date = new Date();
-
-				
-				OrderDAO orderDAO = new OrderDAO();
-				CompletedOrderModel order = new CompletedOrderModel();
-				
-				order.setOrderRef(orderRef);
-				order.setUserId(userId);
-				order.setOrderTotal(orderTotal);
-				order.setOrderDate(formatter.format(date));
-				
-				boolean result = orderDAO.insertCompletedOrder(order);
-				
-				if (result) {
-					System.out.println("Order completed and saved to database");
-				} else {
-					System.out.println("Order not saved to database");
-				}
 	            
+	            HttpSession session = request.getSession(false);
+	    		int userId = Integer.parseInt(String.valueOf(session.getAttribute("id")));
+	    		double orderTotal = Double.parseDouble(String.valueOf(session.getAttribute("orderTotal")));
+	    		String orderRef = String.valueOf(Math.round(Math.random() * 100000));
+	    		
+	    		OrderItemDAO orderItemDAO = new OrderItemDAO();
+	    		orderItemDAO.updateOrderReferenceByUserId(userId, orderRef);
+	    		
+	    		
+	    		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+	    		Date date = new Date();
+
+	    		
+	    		OrderDAO orderDAO = new OrderDAO();
+	    		CompletedOrderModel order = new CompletedOrderModel();
+	    		
+	    		order.setOrderRef(orderRef);
+	    		order.setUserId(userId);
+	    		order.setOrderTotal(orderTotal);
+	    		order.setOrderDate(formatter.format(date));
+	    		
+	    		boolean result = orderDAO.insertCompletedOrder(order);
+	    		
+	    		if (result) {
+	    			System.out.println("Order completed and saved to database");
+	    		} else {
+	    			System.out.println("Order not saved to database");
+	    		}
+
 	            PayerInfo payerInfo = payment.getPayer().getPayerInfo();
 	            Transaction transaction = payment.getTransactions().get(0);
 	             

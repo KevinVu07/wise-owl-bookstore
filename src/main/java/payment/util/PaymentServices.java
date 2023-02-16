@@ -10,6 +10,7 @@ import com.paypal.base.rest.*;
 import model.CheckoutDetail;
 import model.OrderItemModel;
 
+
 public class PaymentServices {
     private static final String CLIENT_ID = "AXQERl-l44oErZwKmGBpTl5nxcYW_fPhVJzEwDQn4B3yiyaNPt5qdHaDOuo9zXDEYnOyIx7Evdf__bDH";
     private static final String CLIENT_SECRET = "EC08RPCLXcpFqYe95ZNQxlZKeSrk71KmSBklaoHLUhrC_R-yI8jwR9KIhTNko36SpBh15GJeOb_nvR8V";
@@ -18,7 +19,6 @@ public class PaymentServices {
     public String authorizePayment(CheckoutDetail checkoutDetail, String firstName, String lastName, String email)        
             throws PayPalRESTException {     
     	
- 
         Payer payer = getPayerInformation(firstName, lastName, email);
         RedirectUrls redirectUrls = getRedirectURLs();
         List<Transaction> listTransaction = getTransactionInformation(checkoutDetail);
@@ -54,9 +54,10 @@ public class PaymentServices {
     }
      
     private RedirectUrls getRedirectURLs() {
+    	
     	RedirectUrls redirectUrls = new RedirectUrls();
-        redirectUrls.setCancelUrl("http://localhost:8080/wise-owl-bookstore/order-summary");
-        redirectUrls.setReturnUrl("http://localhost:8080/wise-owl-bookstore/review-payment");
+        redirectUrls.setCancelUrl("http://www.wiseowlbookshop.com/order-summary");
+        redirectUrls.setReturnUrl("http://www.wiseowlbookshop.com/review-payment");
          
         return redirectUrls;
     }
